@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+ <item android:id="@+id/home_screen"
+     android:icon="@drawable/ic_home_book"
+     android:title="Home"/>
+    <item android:id="@+id/library_screen"
+        android:icon="@drawable/ic_library_book"
+        android:title="@string/library"
+        />
+    <item android:id="@+id/setting_screen"
+        android:icon="@drawable/ic_settings_book"
+        android:title="@string/setting"/>
+
+</menu>

@@ -1,0 +1,302 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+
+    <com.google.android.material.appbar.MaterialToolbar
+        android:id="@+id/materialToolbar"
+        android:layout_width="match_parent"
+        android:layout_height="?android:attr/actionBarSize"
+        android:elevation="0dp"
+        app:elevation="0dp"
+        app:title="@string/welcome"
+        app:titleCentered="true"
+        app:titleTextAppearance="@style/toolbar_text_appearance"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+
+    <LinearLayout
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toTopOf="@id/next"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/materialToolbar"
+        android:orientation="vertical">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/_27sdp"
+            android:textAppearance="@style/toolbar_text_appearance"
+            android:text="@string/what_are_you_interested_in"
+            android:textSize="@dimen/_19ssp"
+
+            android:layout_gravity="center_horizontal"/>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginTop="@dimen/_10sdp"
+            android:layout_gravity="center_horizontal">
+
+            <TextView
+                android:id="@+id/art_type"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/intrested_bg"
+                android:text="@string/art"
+                android:layout_margin="@dimen/_5sdp"
+                android:textColor="@color/costume_black"
+                android:textSize="@dimen/_13ssp"
+                android:padding="@dimen/_5sdp"/>
+
+            <TextView
+                android:id="@+id/tech_type"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/intrested_bg"
+                android:text="@string/technology"
+                android:layout_margin="@dimen/_5sdp"
+                android:textColor="@color/costume_black"
+                android:textSize="@dimen/_13ssp"
+                android:padding="@dimen/_5sdp"/>
+
+            <TextView
+                android:id="@+id/economy_type"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/intrested_bg"
+                android:text="@string/economy"
+                android:layout_margin="@dimen/_5sdp"
+                android:textColor="@color/costume_black"
+                android:textSize="@dimen/_13ssp"
+                android:padding="@dimen/_5sdp"/>
+
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginTop="@dimen/_10sdp"
+            android:layout_gravity="center_horizontal">
+
+            <TextView
+                android:id="@+id/science_fiction_type"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/intrested_bg"
+                android:text="@string/science_fiction"
+                android:layout_margin="@dimen/_5sdp"
+
+                android:textColor="@color/costume_black"
+                android:textSize="@dimen/_13ssp"
+                android:padding="@dimen/_5sdp"/>
+
+            <TextView
+                android:id="@+id/foodtype"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/intrested_bg"
+                android:text="@string/food"
+                android:layout_margin="@dimen/_5sdp"
+                android:textColor="@color/costume_black"
+                android:textSize="@dimen/_13ssp"
+                android:padding="@dimen/_5sdp"/>
+
+            <TextView
+                android:id="@+id/productivity_type"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/intrested_bg"
+                android:text="@string/productivity"
+                android:layout_margin="@dimen/_5sdp"
+                android:textColor="@color/costume_black"
+                android:textSize="@dimen/_13ssp"
+                android:padding="@dimen/_5sdp"/>
+
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginTop="@dimen/_10sdp"
+            android:layout_gravity="center_horizontal">
+
+            <TextView
+                android:id="@+id/history_type"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/intrested_bg"
+                android:text="@string/history"
+                android:layout_margin="@dimen/_5sdp"
+                android:textColor="@color/costume_black"
+                android:textSize="@dimen/_13ssp"
+                android:padding="@dimen/_5sdp"/>
+
+            <TextView
+                android:id="@+id/children_type"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/intrested_bg"
+                android:text="@string/children"
+                android:layout_margin="@dimen/_5sdp"
+                android:textColor="@color/costume_black"
+                android:textSize="@dimen/_13ssp"
+                android:padding="@dimen/_5sdp"/>
+
+            <TextView
+                android:id="@+id/health_type"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/intrested_bg"
+                android:text="@string/health"
+                android:layout_margin="@dimen/_5sdp"
+                android:textColor="@color/costume_black"
+                android:textSize="@dimen/_13ssp"
+                android:padding="@dimen/_5sdp"/>
+
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginTop="@dimen/_10sdp"
+            android:layout_gravity="center_horizontal">
+
+            <TextView
+                android:id="@+id/self_help_type"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/intrested_bg"
+                android:text="@string/self_help"
+                android:layout_margin="@dimen/_5sdp"
+                android:textColor="@color/costume_black"
+                android:textSize="@dimen/_13ssp"
+                android:padding="@dimen/_5sdp"/>
+
+            <TextView
+                android:id="@+id/literary_type"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/intrested_bg"
+                android:text="@string/literary_fiction"
+                android:layout_margin="@dimen/_5sdp"
+                android:textColor="@color/costume_black"
+                android:textSize="@dimen/_13ssp"
+                android:padding="@dimen/_5sdp"/>
+
+            <TextView
+                android:id="@+id/young_type"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/intrested_bg"
+                android:text="@string/young_adult"
+                android:layout_margin="@dimen/_5sdp"
+                android:textColor="@color/costume_black"
+                android:textSize="@dimen/_13ssp"
+                android:padding="@dimen/_5sdp"/>
+
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginTop="@dimen/_10sdp"
+            android:layout_gravity="center_horizontal">
+
+            <TextView
+                android:id="@+id/programming_type"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/intrested_bg"
+                android:text="@string/programming"
+                android:layout_margin="@dimen/_5sdp"
+                android:textColor="@color/costume_black"
+                android:textSize="@dimen/_13ssp"
+                android:padding="@dimen/_5sdp"/>
+
+            <TextView
+                android:id="@+id/crime_type"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/intrested_bg"
+                android:text="@string/crime_thriller"
+                android:layout_margin="@dimen/_5sdp"
+                android:textColor="@color/costume_black"
+                android:textSize="@dimen/_13ssp"
+                android:padding="@dimen/_5sdp"/>
+
+            <TextView
+                android:id="@+id/money_type"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/intrested_bg"
+                android:text="@string/money"
+                android:layout_margin="@dimen/_5sdp"
+                android:textColor="@color/costume_black"
+                android:textSize="@dimen/_13ssp"
+                android:padding="@dimen/_5sdp"/>
+
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginTop="@dimen/_10sdp"
+            android:layout_gravity="center_horizontal">
+
+            <TextView
+                android:id="@+id/memoir_type"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/intrested_bg"
+                android:text="@string/memoir"
+                android:layout_margin="@dimen/_5sdp"
+                android:textColor="@color/costume_black"
+                android:textSize="@dimen/_13ssp"
+                android:padding="@dimen/_5sdp"/>
+
+            <TextView
+                android:id="@+id/politics_type"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/intrested_bg"
+                android:text="@string/politics"
+                android:layout_margin="@dimen/_5sdp"
+                android:textColor="@color/costume_black"
+                android:textSize="@dimen/_13ssp"
+                android:padding="@dimen/_5sdp"/>
+
+
+        </LinearLayout>
+
+
+
+
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/next"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/_40sdp"
+        android:background="@drawable/button_sing"
+        android:gravity="center"
+        android:lineSpacingExtra="@dimen/_15ssp"
+        android:text="@string/done"
+        android:textColor="@color/white"
+        android:textSize="@dimen/_15ssp"
+        android:layout_marginStart="@dimen/_10sdp"
+        android:layout_marginEnd="@dimen/_10sdp"
+        android:layout_marginBottom="@dimen/_10sdp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

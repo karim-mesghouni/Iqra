@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph.xml"
+    app:startDestination="@id/home_screen">
+
+    <fragment
+        android:id="@+id/home_screen"
+        android:name="com.karim_mesghouni.e_book.ui.HomeFragment"
+        tools:layout="@layout/fragment_home_screen"
+        android:label="HomeScreen" >
+        <action
+            android:id="@+id/show_details"
+            app:destination="@id/overViewFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/setting_screen"
+        android:name="com.karim_mesghouni.e_book.ui.SettingFragment"
+        tools:layout="@layout/fragment_settings"
+        android:label="SettingFragment" />
+    <fragment
+        android:id="@+id/library_screen"
+        android:name="com.karim_mesghouni.e_book.ui.LibraryFragment"
+        android:label="LibraryFragment" />
+    <fragment
+        android:id="@+id/overViewFragment"
+        android:name="com.karim_mesghouni.e_book.ui.OverViewFragment"
+        android:label="OverViewFragment" >
+        <argument
+            android:name="book"
+            app:argType="com.karim_mesghouni.e_book.domain.Book" />
+    </fragment>
+</navigation>

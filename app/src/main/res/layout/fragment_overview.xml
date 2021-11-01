@@ -1,0 +1,364 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout>
+
+    <data>
+        <variable
+            name="book"
+            type="com.karim_mesghouni.e_book.domain.Book" />
+    </data>
+
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white">
+
+    <com.google.android.material.appbar.AppBarLayout
+        android:id="@+id/overview_appBarLayout"
+        android:layout_width="match_parent"
+        android:background="#1A999C"
+        app:elevation="0dp"
+        android:elevation="0dp"
+        android:layout_height="?android:attr/actionBarSize"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <com.google.android.material.appbar.MaterialToolbar
+                android:id="@+id/materialToolbar"
+                android:layout_width="0dp"
+                android:layout_height="?android:attr/actionBarSize"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <ImageView
+                android:layout_width="@dimen/_30sdp"
+                android:layout_height="@dimen/_20sdp"
+                android:layout_marginStart="@dimen/_10sdp"
+                android:src="@drawable/ic_arrow_back"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                android:contentDescription="TODO" />
+
+                        <ImageView
+                            android:id="@+id/overview_add_fav"
+                            android:layout_width="@dimen/_20sdp"
+                            android:layout_height="@dimen/_30sdp"
+                            android:layout_marginEnd="@dimen/_10sdp"
+                            tools:src="@drawable/ic_bookmark"
+                            fav="@{book.isfav}"
+
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintEnd_toEndOf="@+id/materialToolbar"
+                            app:layout_constraintTop_toTopOf="parent" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </com.google.android.material.appbar.AppBarLayout>
+
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/overview_appBarLayout"
+        app:layout_constraintVertical_bias="0.0">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:paddingBottom="@dimen/_20sdp">
+
+            <com.google.android.material.card.MaterialCardView
+                android:id="@+id/overview_card_image"
+                android:layout_width="@dimen/_207sdp"
+                android:layout_height="@dimen/_307sdp"
+                android:layout_marginTop="@dimen/_15sdp"
+                app:cardCornerRadius="@dimen/_4sdp"
+                app:cardElevation="@dimen/_10sdp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
+
+                <ImageView
+                    imageUrl="@{book.imageUrl}"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:scaleType="centerCrop"
+                    tools:srcCompat="@tools:sample/avatars" />
+            </com.google.android.material.card.MaterialCardView>
+
+            <TextView
+                android:text="@{book.name}"
+                android:id="@+id/overview_book_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_10sdp"
+                android:fontFamily="@font/montserrat_bold"
+                android:textColor="@color/costume_black"
+                android:textSize="@dimen/_22ssp"
+                app:layout_constraintEnd_toEndOf="@+id/overview_card_image"
+                app:layout_constraintStart_toStartOf="@+id/overview_card_image"
+                app:layout_constraintTop_toBottomOf="@+id/overview_card_image"
+                tools:text="Book title" />
+
+            <TextView
+                android:text="@{book.author}"
+                android:id="@+id/overview_book_author"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_2sdp"
+                android:fontFamily="@font/montserrat_light"
+                android:textColor="@color/costume_black"
+                android:textSize="@dimen/_15ssp"
+                app:layout_constraintEnd_toEndOf="@+id/overview_card_image"
+                app:layout_constraintStart_toStartOf="@+id/overview_card_image"
+                app:layout_constraintTop_toBottomOf="@+id/overview_book_title"
+                tools:text="book author" />
+
+            <com.google.android.material.card.MaterialCardView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:cardElevation="@dimen/_10sdp"
+                app:cardCornerRadius="@dimen/_7sdp"
+                android:layout_marginTop="@dimen/_20sdp"
+                android:layout_marginStart="@dimen/_25sdp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/overview_book_author">
+
+                <LinearLayout
+                    android:id="@+id/read_book"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal"
+                    android:paddingStart="@dimen/_17sdp"
+                    android:paddingTop="@dimen/_5sdp"
+                    android:paddingEnd="@dimen/_17sdp"
+                    android:paddingBottom="@dimen/_5sdp">
+
+                    <ImageView
+
+                        android:layout_width="@dimen/_20sdp"
+                        android:layout_height="@dimen/_20sdp"
+                        android:layout_marginEnd="@dimen/_5sdp"
+                        android:src="@drawable/ic_read_book"
+                        tools:layout_editor_absoluteY="512dp" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/_5sdp"
+                        android:fontFamily="@font/montserrat_medium"
+                        android:text="@string/read_book"
+                        android:textColor="#000000"
+                        android:textSize="@dimen/_11ssp" />
+                </LinearLayout>
+            </com.google.android.material.card.MaterialCardView>
+
+            <com.google.android.material.card.MaterialCardView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="@dimen/_25sdp"
+                android:layout_marginTop="@dimen/_20sdp"
+                app:cardElevation="@dimen/_10sdp"
+                app:cardCornerRadius="@dimen/_7sdp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/overview_book_author">
+
+                <LinearLayout
+                    android:id="@+id/listen_book"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal"
+                    android:paddingStart="@dimen/_17sdp"
+                    android:paddingTop="@dimen/_5sdp"
+                    android:paddingEnd="@dimen/_17sdp"
+                    android:paddingBottom="@dimen/_5sdp">
+
+                    <ImageView
+
+                        android:layout_width="@dimen/_20sdp"
+                        android:layout_height="@dimen/_20sdp"
+                        android:layout_marginEnd="@dimen/_5sdp"
+                        android:src="@drawable/ic_listen_book"
+                        />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/listen_book"
+                        android:textColor="#000000"
+                        android:fontFamily="@font/montserrat_medium"
+                        android:textSize="@dimen/_11ssp"
+                       android:layout_marginStart="@dimen/_5sdp" />
+                </LinearLayout>
+            </com.google.android.material.card.MaterialCardView>
+
+            <View
+                android:id="@+id/overview_rectangle2"
+                android:layout_width="0dp"
+                android:layout_height="1dp"
+                android:layout_marginTop="@dimen/_70sdp"
+                android:layout_marginStart="@dimen/_10sdp"
+                android:layout_marginEnd="@dimen/_10sdp"
+                android:background="@drawable/rectangle"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/overview_book_author" />
+
+            <TextView
+                android:id="@+id/genre"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/_10sdp"
+                android:layout_marginTop="@dimen/_15sdp"
+                android:fontFamily="@font/montserrat_medium"
+                android:text="@string/book_genre"
+                android:textColor="#9F9F9F"
+                android:textSize="@dimen/_15ssp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/overview_rectangle2" />
+
+            <TextView
+                android:id="@+id/launched"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_15sdp"
+                android:layout_marginEnd="@dimen/_30sdp"
+                android:fontFamily="@font/montserrat_medium"
+                android:text="@string/launched"
+                android:textColor="#9F9F9F"
+                android:textSize="@dimen/_15ssp"
+                app:layout_constraintEnd_toStartOf="@id/size"
+                app:layout_constraintTop_toBottomOf="@+id/overview_rectangle2" />
+
+            <TextView
+                android:id="@+id/size"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="-35dp"
+                android:layout_marginTop="@dimen/_15sdp"
+                android:fontFamily="@font/montserrat_medium"
+                android:text="@string/book_size"
+                android:layout_marginEnd="@dimen/_60sdp"
+                android:textColor="#9F9F9F"
+                android:textSize="@dimen/_15ssp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/overview_rectangle2" />
+            <TextView
+                android:text="@{book.genre}"
+                android:id="@+id/genre_description"
+                android:layout_width="@dimen/_100sdp"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/montserrat_bold"
+                android:textColor="@color/costume_black"
+                android:textSize="@dimen/_12ssp"
+                app:layout_constraintTop_toBottomOf="@id/genre"
+                app:layout_constraintStart_toStartOf="@id/genre"
+                android:layout_marginTop="@dimen/_15sdp"
+                tools:text="Biography Autobiography Memoirs"
+                />
+
+            <TextView
+                android:text="@{book.launshed.get(1)}"
+                android:id="@+id/launched_year"
+                android:layout_width="@dimen/_77sdp"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/montserrat_semibold"
+                android:textSize="@dimen/_20ssp"
+                android:textColor="@color/costume_black"
+                app:layout_constraintTop_toBottomOf="@id/launched"
+                app:layout_constraintStart_toStartOf="@id/launched"
+                android:layout_marginTop="@dimen/_15sdp"
+                tools:text="2021"
+                />
+
+            <TextView
+                android:text="@{book.launshed.get(0)}"
+                android:id="@+id/launched_month"
+                android:layout_width="@dimen/_77sdp"
+                android:layout_height="wrap_content"
+                tools:text="October"
+                android:fontFamily="@font/montserrat_medium"
+                android:textColor="@color/costume_black"
+                app:layout_constraintTop_toBottomOf="@id/launched_year"
+                app:layout_constraintStart_toStartOf="@id/launched_year"
+                android:layout_marginTop="@dimen/_5sdp"
+                />
+
+            <TextView
+                android:text="@{book.size}"
+                android:id="@+id/size_number"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/montserrat_semibold"
+                android:textSize="@dimen/_20ssp"
+                android:textColor="@color/costume_black"
+                app:layout_constraintTop_toBottomOf="@id/size"
+                app:layout_constraintStart_toStartOf="@id/size"
+                android:layout_marginTop="@dimen/_15sdp"
+                tools:text="400"
+                />
+            <TextView
+                android:id="@+id/pages"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                tools:text="pages"
+                android:fontFamily="@font/montserrat_medium"
+                android:textColor="@color/costume_black"
+                app:layout_constraintTop_toBottomOf="@id/size_number"
+                app:layout_constraintStart_toStartOf="@id/size_number"
+                android:layout_marginTop="@dimen/_5sdp"
+                />
+
+            <TextView
+                android:id="@+id/summary"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/_10sdp"
+                android:layout_marginTop="@dimen/_25sdp"
+                android:fontFamily="@font/montserrat_medium"
+                android:text="@string/book_summary"
+                android:textColor="#9F9F9F"
+                android:textSize="@dimen/_15ssp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/genre_description"/>
+
+            <TextView
+                android:text="@{book.summery}"
+                android:layout_width="@dimen/_290sdp"
+                android:layout_height="wrap_content"
+                tools:text="@string/some_bigtext"
+                android:fontFamily="@font/montserrat_regular"
+                android:textColor="#232323"
+                android:lineSpacingExtra="7sp"
+                android:layout_marginTop="@dimen/_15ssp"
+                android:textSize="@dimen/_13ssp"
+                android:translationY="3.36sp"
+                android:gravity="bottom"
+                app:layout_constraintTop_toBottomOf="@+id/summary"
+                app:layout_constraintStart_toStartOf="parent"
+                android:layout_marginStart="@dimen/_10sdp"/>
+
+
+
+
+
+
+
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.core.widget.NestedScrollView>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
+</layout>
