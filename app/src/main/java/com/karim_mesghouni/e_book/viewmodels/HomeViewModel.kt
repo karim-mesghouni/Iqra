@@ -15,6 +15,7 @@ import com.karim_mesghouni.e_book.utils.SharedPref
  */
 class HomeViewModel(repository: IRepository<Book>, context: Context) : ViewModel(){
 
+
 //  private val bookRepository  = Repository(Book::class.java,Constants.BOOK_COLLECTION)
 
 
@@ -49,16 +50,16 @@ class HomeViewModel(repository: IRepository<Book>, context: Context) : ViewModel
       }
 
       /**filter all books to get book that user intrest in by { filter {arrayOfUserIntrst.contians(it.genre}}**/
-      _forYouList.value = repository.getList(getUserId(context)).run {
-          val list = this!!
-          repository.get().run {
-              return@run BookCategory(books = this.filter { list.contains(it.genre!!) },title = "For You")
-          }
-      }
-      _forYouList.value = repository.get().run {
-          val list = repository.getList(getUserId(context))
-          BookCategory(books = this.filter { list.contains(it.genre!!) },title = "For You")
-      }
+//      _forYouList.value = repository.getList(getUserId(context)).run {
+//          val list = this!!
+//          repository.get().run {
+//              return@run BookCategory(books = this.filter { list.contains(it.genre!!) },title = "For You")
+//          }
+//      }
+//      _forYouList.value = repository.get().run {
+//          val list = repository.getList(getUserId(context))
+//          BookCategory(books = this.filter { list.contains(it.genre!!) },title = "For You")
+//      }
   }
 
 

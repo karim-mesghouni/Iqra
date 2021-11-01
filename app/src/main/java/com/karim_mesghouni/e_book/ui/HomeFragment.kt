@@ -16,6 +16,7 @@ import com.karim_mesghouni.e_book.ui.adapter.OnBookClick
 import com.karim_mesghouni.e_book.ui.adapter.OnClickMore
 
 import com.karim_mesghouni.e_book.R
+import com.karim_mesghouni.e_book.databinding.FragmentHomeScreenBinding
 import com.karim_mesghouni.e_book.domain.Book
 import com.karim_mesghouni.e_book.domain.BookCategory
 import com.karim_mesghouni.e_book.repository.IRepository
@@ -29,35 +30,25 @@ import com.karim_mesghouni.e_book.viewmodels.HomeViewModelFactory
  * This [Fragment] represent home screen that will show all books .
  */
 class HomeFragment : Fragment(), OnBookClick, OnClickMore {
+    private lateinit var binding : FragmentHomeScreenBinding
     private var categories:MutableList<BookCategory> = mutableListOf()
     private lateinit var viewModel: HomeViewModel
     private lateinit var categoryAdapter: BookCategoryAdapter
-    private lateinit var recyclerView :RecyclerView
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         val repository : IRepository<Book> = Repository(Book::class.java, Constants.BOOK_COLLECTION)
         //get instance of the viewModelFactory
         val viewModelFactory = HomeViewModelFactory(repository,requireContext())
         // initialize the ViewModel class
-        viewModel = ViewModelProvider(this, viewModelFactory).get(HomeViewModel::class.java)
+        viewModel = ViewModelProvider(this,viewModelFactory).get(HomeViewModel::class.java)
 
 
-         // get trending list
-//        viewModel.trendingList.observe(viewLifecycleOwner,{
-//            categories.add(it)
-//        })
-        // get new releases list
-//        viewModel.newReleasesList.observe(viewLifecycleOwner,{
-//            categories.add(it)
-//        })
-        // get for you list
-//        viewModel.forYouList.observe(viewLifecycleOwner,{
-//            categories.add(it)
-//        })
+
 
         // initialize adapter
 
-       // categoryAdapter = BookCategoryAdapter(categories,this,this)
+        categoryAdapter = BookCategoryAdapter(categories,this,this)
 
     }
 
@@ -66,19 +57,31 @@ class HomeFragment : Fragment(), OnBookClick, OnClickMore {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        val view =  inflater.inflate(R.layout.fragment_home_screen,container,false)
-        recyclerView = view.findViewById(R.id.home_screen_main_rv)
-        return view
+        binding = FragmentHomeScreenBinding.inflate(inflater)
+
+        return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        // get trending list
+        viewModel.trendingList.observe(viewLifecycleOwner,{
+            categories.add(it)
+        })
+        //get new releases list
+        viewModel.newReleasesList.observe(viewLifecycleOwner,{
+            categories.add(it)
+        })
+        //get for you list
+        viewModel.forYouList.observe(viewLifecycleOwner,{
+            categories.add(it)
+        })
         setUpRv()
     }
 
     private fun setUpRv(){
         val linearLayoutManager = LinearLayoutManager(context, RecyclerView.VERTICAL, false)
-        recyclerView.run {
+       binding.homeScreenMainRv.rv.run {
             layoutManager = linearLayoutManager
             adapter = categoryAdapter
             enforceSingleScrollDirection()
