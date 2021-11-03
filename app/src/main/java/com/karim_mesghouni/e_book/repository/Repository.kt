@@ -1,10 +1,12 @@
 package com.karim_mesghouni.e_book.repository
 
+import android.util.Log
 import com.karim_mesghouni.e_book.domain.Book
 import com.karim_mesghouni.e_book.domain.User
 import com.karim_mesghouni.e_book.utils.Constants
 import com.google.android.gms.tasks.Task
 import com.google.firebase.firestore.FieldValue
+import com.google.firebase.firestore.QueryDocumentSnapshot
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.firestore.ktx.toObject
 import com.google.firebase.ktx.Firebase
@@ -42,16 +44,34 @@ class Repository<Entity >(
     }
 
     /** get books by category  **/
-    override fun getByCategory(category: String): List<Book> {
-        val books: MutableList<Book> = mutableListOf()
-        db.collection(Constants.BOOK_COLLECTION).whereEqualTo("category", category).get()
-            .addOnSuccessListener { documents ->
-                for (doc in documents) {
-                    books.add(doc.toObject())
+    override fun getByCategory(category: String): Task<List<Entity>> {
+        val books: MutableList<Entity> = mutableListOf()
+        var book = Book()
+        return db.collection(Constants.BOOK_COLLECTION).whereEqualTo("category", category).get()
+            .continueWith {
+                if (it.isSuccessful ) {
+                    for (doc in it.result) {
+                        books.add(doc.toObject(entityClass))
+                    }
+                    return@continueWith books
+                } else {
+                    return@continueWith emptyList<Entity>()
                 }
             }
-        return books
     }
+//
+//        get()
+//            .addOnSuccessListener { documents ->
+//
+//                for (doc in documents) {
+//                    book = doc.toObject(Book::class.java)
+//                    books.add(book)
+//                }
+//                Log.d("Tad",books[0].name!!)
+//            }
+
+
+  //  }
 
 
 
@@ -81,7 +101,7 @@ interface IRepository<Entity > {
     fun remove(id:String,field:String):Task<Void>
     fun get(id: String): Entity?
     fun get(): List<Book>
-    fun getByCategory(category: String): List<Book>
+    fun getByCategory(category: String): Task<List<Entity>>
     fun getList(id: String): List<String>
 //    fun delete(id: String)
 }

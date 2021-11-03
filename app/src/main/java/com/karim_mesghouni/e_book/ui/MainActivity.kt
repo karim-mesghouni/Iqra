@@ -44,6 +44,7 @@ class MainActivity : AppCompatActivity() {
 
          finalHost = NavHostFragment.create(R.navigation.nav_graph)
 
+
         supportFragmentManager.beginTransaction()
             .replace(R.id.fragment_container_main,finalHost)
             .setPrimaryNavigationFragment(finalHost)
@@ -59,6 +60,12 @@ class MainActivity : AppCompatActivity() {
     override fun onStart() {
         super.onStart()
        binding.navView.setupWithNavController(finalHost.navController)
+        finalHost.navController.addOnDestinationChangedListener { _, destination, _ ->
+            when(destination.id){
+                R.id.overViewFragment ->{binding.navView.visibility = View.GONE}
+                else -> {binding.navView.visibility = View.VISIBLE}
+            }
+        }
     }
 
 

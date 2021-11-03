@@ -1,12 +1,14 @@
 package com.karim_mesghouni.e_book.ui
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
+import androidx.navigation.fragment.navArgs
 
 
 import com.karim_mesghouni.e_book.R
@@ -20,6 +22,7 @@ import com.karim_mesghouni.e_book.helpers.TextViewEllipsize
 class OverViewFragment : Fragment() {
     //private lateinit var viewModel: OverviewViewModel
     private lateinit var book: Book
+    val args : OverViewFragmentArgs by navArgs()
     private lateinit var binding: FragmentOverviewBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -27,11 +30,12 @@ class OverViewFragment : Fragment() {
 
         //check if book in my favorites
 
-        if (arguments != null) {
+            book = args.book
+            book.isfav = true
 
-         val args = this.arguments.run { OverViewFragmentArgs.fromBundle(this!!) }
-           book = args.book
-        }
+           Log.d("book",book.toString())
+
+
 
 
 
@@ -43,7 +47,7 @@ class OverViewFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        binding = DataBindingUtil.inflate(inflater, R.layout.fragment_overview,container,false)
+        binding = DataBindingUtil.inflate(layoutInflater,R.layout.fragment_overview,container,false)
         return binding.root
     }
 
@@ -51,7 +55,6 @@ class OverViewFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         binding.readBook.setOnClickListener {
            // downloadFile(getReference("books"),book.name?.lowercase()!!,activity?.applicationContext!!)
-
         }
 
 
@@ -72,8 +75,9 @@ class OverViewFragment : Fragment() {
         binding.readBook.setOnClickListener {
 
         }
+        //TextViewEllipsize.makeTextViewResizable(binding.overviewBookTitle,10,"...",true)
 
-        TextViewEllipsize.makeTextViewResizable(binding.summary,3,"see more",true)
+        //TextViewEllipsize.makeTextViewResizable(binding.summary,5,"see more",true)
         //binding.setBook(book)
         binding.book = book
     }

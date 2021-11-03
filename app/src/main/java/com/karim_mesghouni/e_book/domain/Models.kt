@@ -13,9 +13,10 @@ data class Book(
     val genre:String? =  null,
     val category:String? = null,
     val imageUrl:String? = null,
+    val url:String? = null,
     val published: String? = null,
-    val summery:String? = null,
-    val size:Int? = null,
+    val summery: String? = null,
+    val size: Int? = null,
     var isfav: Boolean? = null):Parcelable{
 //    val isfav
 //      get() = type == "fav"
@@ -24,6 +25,7 @@ data class Book(
         get() = published?.split("-")
 
     constructor(parcel: Parcel) : this(
+        parcel.readString(),
         parcel.readString(),
         parcel.readString(),
         parcel.readString(),
@@ -72,7 +74,8 @@ data class User(
 
 data class BookCategory(
     val id: String = UUID.randomUUID().toString(),
-    val title: String,
+    val title: String ,
     var books: List<Book> = mutableListOf(),
 )
+
 data class Interested(@PropertyName("interested") private var list:MutableList<String>)

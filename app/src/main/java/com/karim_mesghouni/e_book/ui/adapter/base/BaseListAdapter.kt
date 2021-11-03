@@ -22,6 +22,7 @@ abstract class BaseListAdapter<T>(
 
     override fun onBindViewHolder(holder: BaseViewHolder<T>, position: Int) {
         holder.bind(getItem(position), position)
+
     }
 
     inner class BaseViewHolderImp(itemView: View) : BaseViewHolder<T>(itemView) {

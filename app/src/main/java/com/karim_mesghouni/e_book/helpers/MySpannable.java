@@ -2,9 +2,10 @@ package com.karim_mesghouni.e_book.helpers;
 
 import android.graphics.Color;
 import android.text.TextPaint;
+import android.text.style.ClickableSpan;
 import android.view.View;
 
-public class MySpannable {
+public class MySpannable extends ClickableSpan {
     private boolean isUnderline = true;
 
     /**
@@ -14,13 +15,13 @@ public class MySpannable {
         this.isUnderline = isUnderline;
     }
 
-
+    @Override
     public void updateDrawState(TextPaint ds) {
         ds.setUnderlineText(isUnderline);
         ds.setColor(Color.parseColor("#1b76d3"));
     }
 
-
+    @Override
     public void onClick(View widget) {
 
 

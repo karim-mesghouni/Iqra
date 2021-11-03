@@ -10,9 +10,12 @@
         android:name="com.karim_mesghouni.e_book.ui.HomeFragment"
         tools:layout="@layout/fragment_home_screen"
         android:label="HomeScreen" >
+
+
         <action
-            android:id="@+id/show_details"
-            app:destination="@id/overViewFragment" />
+            android:id="@+id/show_overView"
+            app:destination="@id/overViewFragment"
+            app:popUpTo="@id/home_screen" />
     </fragment>
     <fragment
         android:id="@+id/setting_screen"
@@ -21,12 +24,14 @@
         android:label="SettingFragment" />
     <fragment
         android:id="@+id/library_screen"
+        tools:layout="@layout/fragment_library"
         android:name="com.karim_mesghouni.e_book.ui.LibraryFragment"
         android:label="LibraryFragment" />
     <fragment
         android:id="@+id/overViewFragment"
+        tools:layout="@layout/fragment_overview"
         android:name="com.karim_mesghouni.e_book.ui.OverViewFragment"
-        android:label="OverViewFragment" >
+        android:label="OverViewFragment">
         <argument
             android:name="book"
             app:argType="com.karim_mesghouni.e_book.domain.Book" />

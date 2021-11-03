@@ -38,15 +38,18 @@
                 android:layout_width="@dimen/_35sdp"
                 android:layout_height="@dimen/_35sdp"
                 android:layout_marginStart="@dimen/_10sdp"
-                app:cardCornerRadius="@dimen/_8sdp"
+                android:background="#1A999C"
+                app:cardCornerRadius="@dimen/_15sdp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent">
 
                 <ImageView
+                    android:background="#1A999C"
                     android:id="@+id/reader_image"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:scaleType="centerCrop"
                     tools:srcCompat="@tools:sample/avatars" />
 
             </com.google.android.material.card.MaterialCardView>

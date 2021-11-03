@@ -65,17 +65,25 @@ public class TextViewEllipsize {
             ssb.setSpan(new MySpannable(false){
                 @Override
                 public void onClick(View widget) {
+                    tv.setLayoutParams(tv.getLayoutParams());
+                    tv.setText(tv.getTag().toString(), TextView.BufferType.SPANNABLE);
+                    tv.invalidate();
                     if (viewMore) {
-                        tv.setLayoutParams(tv.getLayoutParams());
-                        tv.setText(tv.getTag().toString(), TextView.BufferType.SPANNABLE);
-                        tv.invalidate();
-                        makeTextViewResizable(tv, -1, "See Less", false);
+                        makeTextViewResizable(tv, -1, "View Less", false);
                     } else {
-                        tv.setLayoutParams(tv.getLayoutParams());
-                        tv.setText(tv.getTag().toString(), TextView.BufferType.SPANNABLE);
-                        tv.invalidate();
-                        makeTextViewResizable(tv, 3, ".. See More", true);
+                        makeTextViewResizable(tv, 3, "View More", true);
                     }
+//                    if (viewMore) {
+//                        tv.setLayoutParams(tv.getLayoutParams());
+//                        tv.setText(tv.getTag().toString(), TextView.BufferType.SPANNABLE);
+//                        tv.invalidate();
+//                        makeTextViewResizable(tv, -1, "See Less", false);
+//                    } else {
+//                        tv.setLayoutParams(tv.getLayoutParams());
+//                        tv.setText(tv.getTag().toString(), TextView.BufferType.SPANNABLE);
+//                        tv.invalidate();
+//                        makeTextViewResizable(tv, 3, ".. See More", true);
+//                    }
                 }
             }, str.indexOf(spanableText), str.indexOf(spanableText) + spanableText.length(), 0);
 
