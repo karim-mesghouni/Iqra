@@ -13,7 +13,7 @@
         android:layout_width="match_parent"
         android:elevation="0dp"
         app:elevation="0dp"
-        android:background="#E5E5E5"
+        android:background="#1A999C"
         android:layout_height="?android:attr/actionBarSize">
 
         <androidx.constraintlayout.widget.ConstraintLayout
@@ -51,6 +51,7 @@
                     android:textAppearance="@style/toolbar_text_appearance"
                     android:text="@string/setting"
                     android:gravity="center"
+                    android:textColor="@color/white"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="@+id/materialToolbar"
                     app:layout_constraintTop_toTopOf="parent" />
@@ -109,7 +110,6 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textAppearance="@style/profile_appearance2"
-                android:text="mesghouni"
                 app:layout_constraintBottom_toBottomOf="@id/name"
                 app:layout_constraintEnd_toEndOf="parent" />
 
@@ -129,7 +129,6 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textAppearance="@style/profile_appearance2"
-                android:text="kmessghouni@gmail.com"
                 app:layout_constraintBottom_toBottomOf="@id/account"
                 app:layout_constraintEnd_toEndOf="parent" />
 

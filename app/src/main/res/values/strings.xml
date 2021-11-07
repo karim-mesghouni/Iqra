@@ -22,8 +22,8 @@
     <string name="language">Language</string>
     <string name="theme">Theme</string>
     <string name="about">About This app</string>
-    <string name="by_karim">By Abdelkrim</string>
-    <string name="version">App version:1</string>
+    <string name="by_karim">By Abdelkrim Mesghouni</string>
+    <string name="version">App version: 0.0.1</string>
     <string name="welcome">Welcome</string>
     <string name="what_are_you_interested_in">What are you interested in?</string>
     <string name="food">Food</string>
@@ -45,10 +45,11 @@
     <string name="science_fiction">Science Fiction</string>
     <string name="done">Next</string>
     <string name="google_signin">Sign in with Google</string>
-    <string name="notyet" />
+    <string name="notyet">Not yet</string>
     <string name="download_completed">Download completed</string>
     <string name="download_failed">Download failed</string>
     <string name="check_your_connection">Check your internet connection</string>
 
     <string name="you_show_select_atleast">You should select at least 3 typs.</string>
+    <string name="downloads">Downloads</string>
 </resources>

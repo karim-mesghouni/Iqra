@@ -59,6 +59,7 @@ class BookCategoryAdapter(
         itemView.findViewById<TextView>(R.id.book_category)?.text = item.title
         itemView.findViewById<ImageView>(R.id.more_book).setOnClickListener{
             more(item)
+
         }
         val layoutManager =
             LinearLayoutManager(itemView.context, LinearLayoutManager.HORIZONTAL, false)

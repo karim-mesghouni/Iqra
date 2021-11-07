@@ -1,30 +1,20 @@
 package com.karim_mesghouni.e_book.ui
 
-import android.content.Context
-import android.net.Uri
-import androidx.appcompat.app.AppCompatActivity
+
+
+import android.animation.Animator
+import android.animation.AnimatorListenerAdapter
 import android.os.Bundle
-import android.util.AttributeSet
+import android.util.Log
 import android.view.View
-import android.view.Window
-import androidx.core.content.getSystemService
-import androidx.core.net.toUri
-import androidx.lifecycle.ViewModel
-import androidx.navigation.NavAction
-import androidx.navigation.Navigation
-import androidx.navigation.findNavController
+import android.view.animation.AnimationUtils
+import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.fragment.NavHostFragment
-import androidx.navigation.navGraphViewModels
-import androidx.navigation.ui.NavigationUI
 import androidx.navigation.ui.setupWithNavController
 
-
-import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.karim_mesghouni.e_book.R
 import com.karim_mesghouni.e_book.databinding.ActivityMainBinding
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.withContext
-import java.io.File
+
 
 class MainActivity : AppCompatActivity() {
     private lateinit var binding : ActivityMainBinding
@@ -33,14 +23,6 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
        binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
-        //supportActionBar?.hide()
-//        val navHostFragment = supportFragmentManager.findFragmentById(R.id.fragment_container_main) as NavHostFragment
-//
-//
-//        val navController = navHostFragment.navController
-
-
-
 
          finalHost = NavHostFragment.create(R.navigation.nav_graph)
 
@@ -66,6 +48,48 @@ class MainActivity : AppCompatActivity() {
                 else -> {binding.navView.visibility = View.VISIBLE}
             }
         }
+
+        HomeFragment.listener = {
+            Log.d("Lis",it.toString())
+            if (it)
+                viewVisibleAnimator(binding.navView)
+            else
+                viewGoneAnimator(binding.navView)
+        }
+
+        LibraryFragment.listener = {
+            Log.d("Lis",it.toString())
+            if (it)
+                viewVisibleAnimator(binding.navView)
+            else
+                viewGoneAnimator(binding.navView)
+        }
+    }
+
+   private fun viewGoneAnimator(view: View) {
+        view.animate()
+            .alpha(0f)
+            .setDuration(500)
+
+            .setListener(object : AnimatorListenerAdapter() {
+                override fun onAnimationEnd(animation: Animator) {
+                    view.visibility = View.GONE
+                }
+            })
+
+    }
+
+    private fun viewVisibleAnimator(view: View) {
+        view.animate()
+            .alpha(1f)
+            .setDuration(500)
+            .setListener(object : AnimatorListenerAdapter() {
+                override fun onAnimationEnd(animation: Animator) {
+                    view.visibility = View.VISIBLE
+                }
+            })
+
+
     }
 
 

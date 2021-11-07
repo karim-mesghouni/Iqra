@@ -1,16 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout>
+<layout xmlns:tools="http://schemas.android.com/tools"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <data>
+        <variable
+            name="viewModel"
+            type="com.karim_mesghouni.e_book.viewmodels.OverviewViewModel" />
         <variable
             name="book"
             type="com.karim_mesghouni.e_book.domain.Book" />
     </data>
 
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    xmlns:expandableTextView="http://schemas.android.com/apk/res-auto"
+<androidx.constraintlayout.widget.ConstraintLayout
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/white">
@@ -54,9 +56,7 @@
                             android:layout_width="@dimen/_20sdp"
                             android:layout_height="@dimen/_30sdp"
                             android:layout_marginEnd="@dimen/_10sdp"
-                            android:src="@drawable/ic_bookmark"
-                            fav = "@{book.isfav}"
-
+                            app:fav = "@{viewModel.isFav}"
                             app:layout_constraintBottom_toBottomOf="parent"
                             app:layout_constraintEnd_toEndOf="@+id/materialToolbar"
                             app:layout_constraintTop_toTopOf="parent" />
@@ -81,7 +81,7 @@
             <com.google.android.material.card.MaterialCardView
                 android:id="@+id/overview_card_image"
                 android:layout_width="@dimen/_207sdp"
-                android:layout_height="@dimen/_307sdp"
+                android:layout_height="@dimen/_280sdp"
                 android:layout_marginTop="@dimen/_15sdp"
                 app:cardCornerRadius="@dimen/_4sdp"
                 app:cardElevation="@dimen/_10sdp"
@@ -100,12 +100,17 @@
             <TextView
                 android:text="@{book.name}"
                 android:id="@+id/overview_book_title"
-                android:layout_width="wrap_content"
+                android:layout_width="@dimen/_130sdp"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/_10sdp"
-                android:fontFamily="@font/montserrat_bold"
+                android:fontFamily="@font/montserrat_medium"
                 android:textColor="@color/costume_black"
-                android:textSize="@dimen/_22ssp"
+                android:textSize="@dimen/_20ssp"
+                android:lines="1"
+                android:gravity="center"
+                android:ellipsize="marquee"
+                android:scrollHorizontally="true"
+                android:marqueeRepeatLimit="marquee_forever"
                 app:layout_constraintEnd_toEndOf="@+id/overview_card_image"
                 app:layout_constraintStart_toStartOf="@+id/overview_card_image"
                 app:layout_constraintTop_toBottomOf="@+id/overview_card_image"
@@ -124,16 +129,22 @@
                 app:layout_constraintStart_toStartOf="@+id/overview_card_image"
                 app:layout_constraintTop_toBottomOf="@+id/overview_book_title"
                 tools:text="book author" />
+<LinearLayout
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:weightSum="2"
+    app:layout_constraintTop_toBottomOf="@+id/overview_book_author"
 
+    app:layout_constraintStart_toStartOf="@id/overview_book_author"
+    app:layout_constraintEnd_toEndOf="@id/overview_book_author">
             <com.google.android.material.card.MaterialCardView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                app:cardElevation="@dimen/_10sdp"
-                app:cardCornerRadius="@dimen/_7sdp"
-                android:layout_marginTop="@dimen/_20sdp"
-                android:layout_marginStart="@dimen/_25sdp"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/overview_book_author">
+                app:cardElevation="@dimen/_5sdp"
+                app:cardCornerRadius="@dimen/_10sdp"
+                android:layout_weight="1"
+                android:layout_margin="@dimen/_8sdp"
+               >
 
                 <LinearLayout
                     android:id="@+id/read_book"
@@ -166,14 +177,14 @@
             </com.google.android.material.card.MaterialCardView>
 
             <com.google.android.material.card.MaterialCardView
+                android:id="@+id/materialCardView3"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginEnd="@dimen/_25sdp"
-                android:layout_marginTop="@dimen/_20sdp"
-                app:cardElevation="@dimen/_10sdp"
-                app:cardCornerRadius="@dimen/_7sdp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/overview_book_author">
+                android:layout_weight="1"
+                app:cardCornerRadius="@dimen/_10sdp"
+                app:cardElevation="@dimen/_5sdp"
+                android:layout_margin="@dimen/_8sdp"
+                >
 
                 <LinearLayout
                     android:id="@+id/listen_book"
@@ -191,20 +202,19 @@
                         android:layout_width="@dimen/_20sdp"
                         android:layout_height="@dimen/_20sdp"
                         android:layout_marginEnd="@dimen/_5sdp"
-                        android:src="@drawable/ic_listen_book"
-                        />
+                        android:src="@drawable/ic_listen_book" />
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/_5sdp"
+                        android:fontFamily="@font/montserrat_medium"
                         android:text="@string/listen_book"
                         android:textColor="#000000"
-                        android:fontFamily="@font/montserrat_medium"
-                        android:textSize="@dimen/_11ssp"
-                       android:layout_marginStart="@dimen/_5sdp" />
+                        android:textSize="@dimen/_11ssp" />
                 </LinearLayout>
             </com.google.android.material.card.MaterialCardView>
-
+</LinearLayout>
             <View
                 android:id="@+id/overview_rectangle2"
                 android:layout_width="0dp"
@@ -261,7 +271,7 @@
                 android:id="@+id/genre_description"
                 android:layout_width="@dimen/_100sdp"
                 android:layout_height="wrap_content"
-                android:fontFamily="@font/montserrat_bold"
+                android:fontFamily="@font/montserrat_medium"
                 android:textColor="@color/costume_black"
                 android:textSize="@dimen/_12ssp"
                 app:layout_constraintTop_toBottomOf="@id/genre"
@@ -271,12 +281,13 @@
                 />
 
             <TextView
-                android:text="@{book.launshed.get(1)}"
+                android:text="@{book.launched.get(1)}"
                 android:id="@+id/launched_year"
                 android:layout_width="@dimen/_77sdp"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/montserrat_semibold"
-                android:textSize="@dimen/_20ssp"
+                android:textSize="@dimen/_16ssp"
+                android:gravity="end"
                 android:textColor="@color/costume_black"
                 app:layout_constraintTop_toBottomOf="@id/launched"
                 app:layout_constraintStart_toStartOf="@id/launched"
@@ -285,11 +296,13 @@
                 />
 
             <TextView
-                android:text="@{book.launshed.get(0)}"
+                android:text="@{book.launched.get(0)}"
                 android:id="@+id/launched_month"
                 android:layout_width="@dimen/_77sdp"
                 android:layout_height="wrap_content"
                 tools:text="October"
+                android:gravity="end"
+                android:textSize="@dimen/_12ssp"
                 android:fontFamily="@font/montserrat_medium"
                 android:textColor="@color/costume_black"
                 app:layout_constraintTop_toBottomOf="@id/launched_year"
@@ -303,7 +316,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/montserrat_semibold"
-                android:textSize="@dimen/_20ssp"
+                android:textSize="@dimen/_16ssp"
                 android:textColor="@color/costume_black"
                 app:layout_constraintTop_toBottomOf="@id/size"
                 app:layout_constraintStart_toStartOf="@id/size"
@@ -314,7 +327,8 @@
                 android:id="@+id/pages"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                tools:text="pages"
+                android:text="pages"
+                android:textSize="@dimen/_12ssp"
                 android:fontFamily="@font/montserrat_medium"
                 android:textColor="@color/costume_black"
                 app:layout_constraintTop_toBottomOf="@id/size_number"
@@ -333,7 +347,7 @@
                 android:textColor="#9F9F9F"
                 android:textSize="@dimen/_15ssp"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/genre_description"/>
+                app:layout_constraintTop_toBottomOf="@id/pages"/>
 
             <io.github.glailton.expandabletextview.ExpandableTextView
                 android:id="@+id/summary"
@@ -349,14 +363,14 @@
                 app:layout_constraintTop_toBottomOf="@+id/summary_t"
                 app:layout_constraintStart_toStartOf="parent"
                 android:layout_marginStart="@dimen/_10sdp"
-                expandableTextView:collapsedLines="2"
-                expandableTextView:animDuration="500"
-                expandableTextView:ellipsizeTextColor="#9C27B0"
-                expandableTextView:readMoreText="read more"
+                app:collapsedLines="2"
+                app:animDuration="500"
 
-                expandableTextView:readLessText="read less"
-                expandableTextView:textMode="line"
-                expandableTextView:isExpanded="false"
+                app:ellipsizeTextColor="#9C27B0"
+                app:readMoreText="read more"
+                app:readLessText="read less"
+                app:textMode="line"
+                app:isExpanded="false"
                  />
 
 

@@ -9,7 +9,7 @@ import com.karim_mesghouni.e_book.R
 import com.karim_mesghouni.e_book.domain.Book
 import com.karim_mesghouni.e_book.ui.adapter.base.BaseAdapter
 
-class BookAdapter(books :List<Book> = emptyList(), private val listener: (Book) -> Unit): BaseAdapter<Book>(R.layout.book_item,books) {
+class BookAdapter(books :List<Book>? = emptyList(), private val listener: ((Book) -> Unit)?): BaseAdapter<Book>(R.layout.book_item,books) {
 
     override fun bind(itemView: View, item: Book, position: Int, viewHolder: BaseViewHolderImp) {
 
@@ -21,7 +21,7 @@ class BookAdapter(books :List<Book> = emptyList(), private val listener: (Book) 
 
         }
         itemView.setOnClickListener {
-            listener(item)
+            listener?.invoke(item)
         }
 
     }

@@ -30,6 +30,7 @@ import com.karim_mesghouni.e_book.repository.Repository
 import com.karim_mesghouni.e_book.ui.InterestedFragment
 import com.karim_mesghouni.e_book.ui.MainActivity
 import com.karim_mesghouni.e_book.utils.Constants
+import com.karim_mesghouni.e_book.utils.SharedPref
 
 class SignInFragment:Fragment() {
 
@@ -117,21 +118,41 @@ class SignInFragment:Fragment() {
 
 
     private fun checkUser(user: FirebaseUser?){
-        val repo : IRepository<User> = Repository(User::class.java, Constants.USER_COLLECTION)
-        val isExist:Boolean
-        repo.get(user?.uid!!).let {
-            isExist = it?.id != null
-        }
-        if (!isExist){
-            // here probably error
-            activity?.supportFragmentManager?.commit {
-                setReorderingAllowed(true)
-                replace<InterestedFragment>(R.id.fragment_container)
+        val repo : IRepository<User> = Repository(User::class.java, Constants.USER_COLLECTION,requireContext())
+//        var isExist:Boolean
+        repo.get(user?.uid!!).addOnCompleteListener {
+            it.result?.let {
+                if (null == it.id){
+                    // here probably error
+                    activity?.supportFragmentManager?.commit {
+                        setReorderingAllowed(true)
+                        replace<InterestedFragment>(R.id.fragment_container)
+                    }
+                }else {
+                    Log.d("TAG", it.id!!)
+                   addUser()
+                    startActivity(Intent(activity, MainActivity::class.java))
+                    activity?.finish()
+                }
             }
-        }else {
-            startActivity(Intent(activity, MainActivity::class.java))
-            activity?.finish()
         }
+
+//
+//        if (!isExist!!){
+//            // here probably error
+//            activity?.supportFragmentManager?.commit {
+//                setReorderingAllowed(true)
+//                replace<InterestedFragment>(R.id.fragment_container)
+//            }
+//        }else {
+//            startActivity(Intent(activity, MainActivity::class.java))
+//            activity?.finish()
+//        }
+    }
+    private fun addUser(){
+        SharedPref.init(activity?.baseContext)
+        SharedPref.write(SharedPref.IS_THERE,true)
+        SharedPref.write(SharedPref.USER_ID,FirebaseAuth.getInstance().currentUser?.uid)
     }
 
     companion object {

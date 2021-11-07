@@ -21,18 +21,22 @@
             tools:srcCompat="@tools:sample/backgrounds/scenic"
             android:scaleType="centerCrop"/>
     </com.google.android.material.card.MaterialCardView>
+
     <TextView
         android:id="@+id/fav_book_title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="@dimen/_10sdp"
-        app:layout_constraintStart_toEndOf="@id/card_item_fav"
-        app:layout_constraintTop_toTopOf="parent"
         android:fontFamily="@font/montserrat_bold"
+        android:lines="1"
+        android:maxLength="20"
         android:textColor="@color/costume_black"
         android:textSize="@dimen/_13ssp"
-        tools:text="Coming"
-        />
+        app:layout_constraintEnd_toStartOf="@+id/favorite_book"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toEndOf="@id/card_item_fav"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:text="Coming" />
     <TextView
         android:id="@+id/fav_book_author"
         android:layout_width="wrap_content"

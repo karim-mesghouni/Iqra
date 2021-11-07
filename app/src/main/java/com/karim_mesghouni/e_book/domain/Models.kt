@@ -3,7 +3,6 @@ package com.karim_mesghouni.e_book.domain
 
 import android.os.Parcel
 import android.os.Parcelable
-import com.google.firebase.firestore.PropertyName
 import java.util.*
 
 data class Book(
@@ -15,14 +14,15 @@ data class Book(
     val imageUrl:String? = null,
     val url:String? = null,
     val published: String? = null,
-    val summery: String? = null,
+    var summery: String? = null,
     val size: Int? = null,
-    var isfav: Boolean? = null):Parcelable{
-//    val isfav
-//      get() = type == "fav"
+    var isFav: Boolean? = false):Parcelable{
 
-    val launshed
+
+    val launched
         get() = published?.split("-")
+
+
 
     constructor(parcel: Parcel) : this(
         parcel.readString(),
@@ -36,8 +36,7 @@ data class Book(
         parcel.readString(),
         parcel.readValue(Int::class.java.classLoader) as? Int,
         parcel.readValue(Boolean::class.java.classLoader) as? Boolean
-    ) {
-    }
+    )
 
 
     override fun describeContents(): Int {
@@ -46,6 +45,42 @@ data class Book(
 
     override fun writeToParcel(p0: Parcel?, p1: Int) {
         TODO("Not yet implemented")
+    }
+
+    override fun equals(other: Any?): Boolean {
+        if (this === other) return true
+        if (javaClass != other?.javaClass) return false
+
+        other as Book
+
+        if (id != other.id) return false
+        if (name != other.name) return false
+        if (author != other.author) return false
+        if (genre != other.genre) return false
+        if (category != other.category) return false
+        if (imageUrl != other.imageUrl) return false
+        if (url != other.url) return false
+        if (published != other.published) return false
+        if (summery != other.summery) return false
+        if (size != other.size) return false
+        if (isFav != other.isFav) return false
+
+        return true
+    }
+
+    override fun hashCode(): Int {
+        var result = id?.hashCode() ?: 0
+        result = 31 * result + (name?.hashCode() ?: 0)
+        result = 31 * result + (author?.hashCode() ?: 0)
+        result = 31 * result + (genre?.hashCode() ?: 0)
+        result = 31 * result + (category?.hashCode() ?: 0)
+        result = 31 * result + (imageUrl?.hashCode() ?: 0)
+        result = 31 * result + (url?.hashCode() ?: 0)
+        result = 31 * result + (published?.hashCode() ?: 0)
+        result = 31 * result + (summery?.hashCode() ?: 0)
+        result = 31 * result + (size ?: 0)
+        result = 31 * result + (isFav?.hashCode() ?: 0)
+        return result
     }
 
     companion object CREATOR : Parcelable.Creator<Book> {
@@ -59,6 +94,7 @@ data class Book(
     }
 
 
+
 }
 
 
@@ -68,8 +104,8 @@ data class User(
     var id: String? = null,
     var imageUrl: String? = null,
     var email: String? = null,
-    val favorites : List<String>?=null,
-    val downloads:List<String>?=null,
+    val favorites : List<String>?= emptyList(),
+    val downloads:List<String>?= emptyList(),
     var interested:List<String>?=null)
 
 data class BookCategory(
@@ -78,4 +114,3 @@ data class BookCategory(
     var books: List<Book> = mutableListOf(),
 )
 
-data class Interested(@PropertyName("interested") private var list:MutableList<String>)

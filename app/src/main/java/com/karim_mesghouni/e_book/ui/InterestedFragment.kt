@@ -60,7 +60,7 @@ class InterestedFragment : Fragment() {
     }
 
     private fun saveUser() {
-        val rep: IRepository<User> = Repository(User::class.java, Constants.USER_COLLECTION)
+        val rep: IRepository<User> = Repository(User::class.java, Constants.USER_COLLECTION,requireContext())
         val firebaseUser = FirebaseAuth.getInstance().currentUser
         val user = User().apply {
             name = firebaseUser?.displayName

@@ -5,6 +5,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
+import com.karim_mesghouni.e_book.domain.Book
 
 abstract class BaseListAdapter<T>(
     private val itemLayoutRes: Int,
@@ -28,8 +29,14 @@ abstract class BaseListAdapter<T>(
     inner class BaseViewHolderImp(itemView: View) : BaseViewHolder<T>(itemView) {
         override fun bind(item: T, position: Int) {
             this@BaseListAdapter.bind(itemView, item, position, this)
+
         }
+
+
     }
 
     abstract fun bind(itemView: View, item: T, position: Int, viewHolder: BaseViewHolderImp)
+
+
+
 }

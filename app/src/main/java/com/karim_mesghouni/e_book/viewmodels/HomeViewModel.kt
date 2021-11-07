@@ -3,15 +3,17 @@ package com.karim_mesghouni.e_book.viewmodels
 import android.content.Context
 import android.util.Log
 import androidx.lifecycle.*
+import com.google.android.gms.tasks.Task
 import com.karim_mesghouni.e_book.domain.Book
 import com.karim_mesghouni.e_book.domain.BookCategory
 import com.karim_mesghouni.e_book.repository.IRepository
 import com.karim_mesghouni.e_book.utils.SharedPref
+import com.karim_mesghouni.e_book.utils.getUserId
 
 /**
  * The [ViewModel] that is associated with the [HomeFragment].
  */
-class HomeViewModel(private val repository: IRepository<Book>, context: Context) : ViewModel() {
+class HomeViewModel(private val repository: IRepository<Book>, private val context: Context) : ViewModel() {
 
     private val _trendingList: MutableLiveData<BookCategory> by lazy {
         MutableLiveData<BookCategory>().also {
@@ -40,7 +42,7 @@ class HomeViewModel(private val repository: IRepository<Book>, context: Context)
 
 
     private val _newReleasesList : MutableLiveData<BookCategory> by lazy {
-        MutableLiveData<BookCategory>().also {
+          MutableLiveData<BookCategory>().also {
             loadNewReleases()
         }
     }
@@ -53,6 +55,32 @@ class HomeViewModel(private val repository: IRepository<Book>, context: Context)
         }
     }
 
+    private val _forYou : MutableLiveData<BookCategory> by lazy {
+        MutableLiveData<BookCategory>().also {
+           loadForYou()
+        }
+    }
+
+    fun getForYou():LiveData<BookCategory>{
+        return _forYou
+    }
+
+    private fun loadForYou() {
+
+        repository.get().addOnCompleteListener {bookList ->
+            getList("interested").addOnCompleteListener { interests ->
+                _forYou.value = BookCategory(books = bookList.result.filter { book ->
+                   interests?.result?.contains(book.genre)?:false
+                } ,title = "For you")
+            }
+        }
+    }
+
+    private fun getList(value:String): Task<List<String>?> {
+
+        return  repository.getList(value, getUserId(context))
+    }
+
     fun getNewReleases():LiveData<BookCategory>{
         return _newReleasesList
     }
@@ -61,10 +89,7 @@ class HomeViewModel(private val repository: IRepository<Book>, context: Context)
 
 
 
-    private fun getUserId(context: Context): String {
-        SharedPref.init(context)
-        return SharedPref.read(SharedPref.USER_ID, "")
-    }
+
 
 
 }

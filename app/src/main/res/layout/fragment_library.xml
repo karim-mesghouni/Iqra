@@ -1,10 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
+<layout
+    >
+    <data>
+        <variable
+            name="viewModel"
+            type="com.karim_mesghouni.e_book.viewmodels.LibraryViewModel" />
+    </data>
+
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:background="#E5E5E5">
+    android:background="@color/white">
 
     <com.google.android.material.appbar.AppBarLayout
         android:id="@+id/library_appBarLayout"
@@ -42,7 +50,7 @@
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
-                    android:contentDescription="TODO" />
+                     />
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -51,6 +59,7 @@
                     android:textAppearance="@style/toolbar_text_appearance"
                     android:text="@string/library"
                     android:gravity="center"
+                    android:textColor="@color/white"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="@+id/materialToolbar"
                     app:layout_constraintTop_toTopOf="parent" />
@@ -63,7 +72,7 @@
         android:id="@+id/library_include"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        layout="@layout/main_rv_item"
+        layout="@layout/main_rv_item_large"
         app:layout_constraintTop_toBottomOf="@id/library_appBarLayout"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"/>
@@ -73,9 +82,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/favorites"
-        android:textSize="@dimen/_15ssp"
-        android:textColor="@color/costume_black"
-        android:fontFamily="@font/montserrat_bold"
+
+       android:textAppearance="@style/TextAppearance.Headline"
         app:layout_constraintTop_toBottomOf="@id/library_include"
         android:layout_marginTop="@dimen/_16sdp"
         app:layout_constraintStart_toStartOf="parent"
@@ -85,6 +93,7 @@
         android:id="@+id/favorites_rv"
         android:layout_width="0dp"
         android:layout_height="0dp"
+        app:listData="@{viewModel.favList}"
         app:layout_constraintTop_toBottomOf="@id/favorites"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -99,3 +108,4 @@
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>
