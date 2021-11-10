@@ -49,11 +49,13 @@ class OverviewViewModel(private val mBook: Book,private val context: Context, pr
        _isDownloaded.value = isDown
     }
 
-
-    init {
+    fun loadLocal(){
         viewModelScope.launch{
             _localDownloadedList.value = loadBooksFromExternalStorage(context.contentResolver)
         }
+    }
+    init {
+
         repository.getList("downloads", getUserId(context)).addOnCompleteListener {
             _downloadedList.value = it.result?: emptyList()
             _isDownloaded.value = _downloadedList.value?.contains(mBook.name)?:false

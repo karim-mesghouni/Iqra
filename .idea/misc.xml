@@ -6,6 +6,7 @@
         <entry key="../../.gradle/caches/transforms-3/1c027defa148106d51a991b38d513919/transformed/jetified-play-services-base-17.5.0/res/drawable/common_google_signin_btn_icon_dark.xml" value="0.35989583333333336" />
         <entry key="app/src/main/res/drawable-v24/bottom_nav_background.xml" value="0.35989583333333336" />
         <entry key="app/src/main/res/drawable-v24/bottom_navigation_color_selector.xml" value="0.35435897435897434" />
+        <entry key="app/src/main/res/drawable-v24/button_sing.xml" value="0.35435897435897434" />
         <entry key="app/src/main/res/drawable-v24/ic_arrow_back.xml" value="0.35989583333333336" />
         <entry key="app/src/main/res/drawable-v24/ic_bookmark.xml" value="0.35435897435897434" />
         <entry key="app/src/main/res/drawable-v24/ic_bookmark_black.xml" value="0.35435897435897434" />
@@ -13,6 +14,7 @@
         <entry key="app/src/main/res/drawable-v24/ic_launcher_foreground.xml" value="0.3859375" />
         <entry key="app/src/main/res/drawable-v24/ic_search_book.xml" value="0.35989583333333336" />
         <entry key="app/src/main/res/drawable-v24/ic_search_book_black.xml" value="0.35989583333333336" />
+        <entry key="app/src/main/res/drawable-v24/intrested_bg.xml" value="0.35435897435897434" />
         <entry key="app/src/main/res/drawable/ic_close.xml" value="0.35989583333333336" />
         <entry key="app/src/main/res/drawable/ic_commit.xml" value="0.35989583333333336" />
         <entry key="app/src/main/res/drawable/ic_iqra.xml" value="0.3859375" />

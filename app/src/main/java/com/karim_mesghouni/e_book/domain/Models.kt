@@ -1,6 +1,7 @@
 package com.karim_mesghouni.e_book.domain
 
 
+
 import android.os.Parcel
 import android.os.Parcelable
 import java.util.*
@@ -39,9 +40,7 @@ data class Book(
     )
 
 
-    override fun describeContents(): Int {
-        TODO("Not yet implemented")
-    }
+
 
     override fun writeToParcel(p0: Parcel?, p1: Int) {
 
@@ -81,6 +80,10 @@ data class Book(
         result = 31 * result + (size ?: 0)
         result = 31 * result + (isFav?.hashCode() ?: 0)
         return result
+    }
+
+    override fun describeContents(): Int {
+        return 0
     }
 
     companion object CREATOR : Parcelable.Creator<Book> {

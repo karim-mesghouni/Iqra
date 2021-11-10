@@ -53,6 +53,24 @@ class OverViewFragment : Fragment() {
         super.onCreate(savedInstanceState)
         // get the selected book from args
         book = args.book
+        Dexter.withContext(activity?.applicationContext).withPermission(Manifest.permission.WRITE_EXTERNAL_STORAGE)
+            .withListener(object : PermissionListener {
+                override fun onPermissionGranted(response: PermissionGrantedResponse) {
+                    viewModel.loadLocal()
+                }
+
+                override fun onPermissionDenied(response: PermissionDeniedResponse) {
+                    response.requestedPermission
+                }
+
+                override fun onPermissionRationaleShouldBeShown(
+                    permission: PermissionRequest,
+                    token: PermissionToken
+                ) {
+
+                }
+            }).check()
+
 
     }
 
@@ -86,6 +104,7 @@ class OverViewFragment : Fragment() {
            }else{
                Toast.makeText(context, R.string.check_your_connection, Toast.LENGTH_SHORT).show()
            }
+
         }
         binding.backOverview.setOnClickListener {
             findNavController().popBackStack()
@@ -122,7 +141,7 @@ class OverViewFragment : Fragment() {
 
     }
 
-    // remember to save the book
+
 
 
 }

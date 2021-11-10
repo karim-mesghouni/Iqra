@@ -52,6 +52,10 @@ class InterestedFragment : Fragment() {
             saveUser()
             addUser()
         }
+        list.apply {
+            if (this.size >= 3)
+                binding.next.isEnabled = true
+        }
     }
 
     private fun finish() {
@@ -103,6 +107,6 @@ class InterestedFragment : Fragment() {
         SharedPref.write(SharedPref.IS_THERE,true)
         SharedPref.write(SharedPref.USER_ID,FirebaseAuth.getInstance().currentUser?.uid)
         SharedPref.write(SharedPref.USER_NAME,FirebaseAuth.getInstance().currentUser?.displayName)
-        SharedPref.write(SharedPref.USER_ID,FirebaseAuth.getInstance().currentUser?.email)
+        SharedPref.write(SharedPref.USER_EMAIL,FirebaseAuth.getInstance().currentUser?.email)
     }
 }

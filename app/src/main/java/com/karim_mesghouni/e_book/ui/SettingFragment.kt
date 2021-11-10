@@ -54,9 +54,7 @@ class SettingFragment :Fragment(){
 
 
         binding.logout.setOnClickListener {
-          // signOut()
-            //throw RuntimeException("Test Crash") // Force a crash
-            //Firebase.crashlytics.recordException(Throwable())
+           signOut()
         }
     }
 

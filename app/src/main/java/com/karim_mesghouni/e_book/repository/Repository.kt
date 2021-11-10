@@ -27,13 +27,12 @@ class Repository<Entity >(
     }
     /** get book or get user **/
     override fun get(id: String): Task<Entity?> {
-        var entity:Entity? = null
+    //    var entity:Entity? = null
          return db.collection(collection).document(id).get().continueWith {
                if (it.isSuccessful){
-                   entity =  it.result.toObject(entityClass)
-                   return@continueWith entity
+                   return@continueWith it.result.toObject(entityClass)
                }else{
-                   return@continueWith entity
+                   return@continueWith null
                }
         }
 
