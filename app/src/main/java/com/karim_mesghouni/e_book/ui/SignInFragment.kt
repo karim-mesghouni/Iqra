@@ -134,7 +134,7 @@ class SignInFragment:Fragment() {
                               replace<InterestedFragment>(R.id.fragment_container)
                           }
                   }else{
-                      Log.d("TAG", u?.id!!)
+
                       addUser()
                       startActivity(Intent(activity, MainActivity::class.java))
                       activity?.finish()

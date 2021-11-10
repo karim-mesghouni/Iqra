@@ -2,7 +2,6 @@ package com.karim_mesghouni.e_book.ui
 
 
 import android.Manifest
-import android.nfc.Tag
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
@@ -38,22 +37,25 @@ import com.karumi.dexter.listener.single.PermissionListener
  */
 class OverViewFragment : Fragment() {
     private val viewModel: OverviewViewModel by lazy {
-         requireNotNull(this)
-        val repository: IRepository<Book> = Repository(Book::class.java, Constants.BOOK_COLLECTION,requireContext())
+        requireNotNull(this)
+        val repository: IRepository<Book> =
+            Repository(Book::class.java, Constants.BOOK_COLLECTION, requireContext())
         //get instance of the viewModelFactory
-        val viewModelFactory = OverviewViewModelFactory(book,activity?.applicationContext!!,repository)
+        val viewModelFactory =
+            OverviewViewModelFactory(book, activity?.applicationContext!!, repository)
         ViewModelProvider(this, viewModelFactory).get(OverviewViewModel::class.java)
     }
     private lateinit var book: Book
     private val args: OverViewFragmentArgs by navArgs()
     private lateinit var binding: FragmentOverviewBinding
-    private lateinit var localUri:MutableMap<String,String>
+    private var localUri: MutableMap<String, String> = mutableMapOf()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         // get the selected book from args
         book = args.book
-        Dexter.withContext(activity?.applicationContext).withPermission(Manifest.permission.WRITE_EXTERNAL_STORAGE)
+        Dexter.withContext(activity?.applicationContext)
+            .withPermission(Manifest.permission.WRITE_EXTERNAL_STORAGE)
             .withListener(object : PermissionListener {
                 override fun onPermissionGranted(response: PermissionGrantedResponse) {
                     viewModel.loadLocal()
@@ -91,19 +93,27 @@ class OverViewFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         binding.viewModel = viewModel
-        viewModel.localDownloadedList.observe(viewLifecycleOwner,{
-            localUri = it?:  mutableMapOf()
+        viewModel.localDownloadedList.observe(viewLifecycleOwner, {
+            localUri = it ?: mutableMapOf()
         })
         binding.readBook.setOnClickListener {
-           if (viewModel.isDownloaded.value!!)
-               // open book
-               open(localUri[book.name],requireContext())
-           else if(checkNetwork(context)){
-               checkPermission(this, book)
-               viewModel.setDown(true)
-           }else{
-               Toast.makeText(context, R.string.check_your_connection, Toast.LENGTH_SHORT).show()
-           }
+
+            if (!viewModel.isDownloaded.value!!) {
+                if (checkNetwork(context)) {
+                    checkPermission(this, book)
+                    viewModel.setDown(true)
+                } else {
+                    Toast.makeText(context, R.string.check_your_connection, Toast.LENGTH_SHORT)
+                        .show()
+                }
+            } else {
+
+                viewModel.localDownloadedList.observe(viewLifecycleOwner, {
+                    open(it?.get(book.name), requireContext())
+                })
+
+            }
+
 
         }
         binding.backOverview.setOnClickListener {
@@ -114,24 +124,24 @@ class OverViewFragment : Fragment() {
             Toast.makeText(context, R.string.notyet, Toast.LENGTH_SHORT).show()
         }
 
-        viewModel.favList.observe(viewLifecycleOwner,{
+        viewModel.favList.observe(viewLifecycleOwner, {
             if (it.contains(book.name))
                 viewModel.setFav(true)
 
         })
-        viewModel.localDownloadedList.observe(viewLifecycleOwner,{
-            localUri = it?:  mutableMapOf()
+        viewModel.localDownloadedList.observe(viewLifecycleOwner, {
+            localUri = it ?: mutableMapOf()
         })
         binding.overviewAddFav.setOnClickListener {
             Log.d(TAG, "fav button clicked")
             if (viewModel.isFav.value!!) viewModel.setFav(false) else viewModel.setFav(true)
         }
-        viewModel.isFav.observe(viewLifecycleOwner,{
+        viewModel.isFav.observe(viewLifecycleOwner, {
             // app:fav = "@{safeUnbox(viewModel.isFav)}"
             Log.d(TAG, "book is in $it")
         })
 
-        viewModel.book.observe(viewLifecycleOwner,{
+        viewModel.book.observe(viewLifecycleOwner, {
             Log.d(TAG, "book observed")
             binding.book = it
         })
@@ -142,13 +152,12 @@ class OverViewFragment : Fragment() {
     }
 
 
-
-
 }
 
 private fun checkPermission(fragment: Fragment, book: Book) {
 
-    Dexter.withContext(fragment.activity?.applicationContext).withPermission(Manifest.permission.WRITE_EXTERNAL_STORAGE)
+    Dexter.withContext(fragment.activity?.applicationContext)
+        .withPermission(Manifest.permission.WRITE_EXTERNAL_STORAGE)
         .withListener(object : PermissionListener {
             override fun onPermissionGranted(response: PermissionGrantedResponse) {
                 download(fragment.requireActivity(), book)
