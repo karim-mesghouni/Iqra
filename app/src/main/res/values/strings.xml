@@ -11,7 +11,7 @@
     <string name="notification_description_completed">%1$s downloaded.</string>
     <string name="greatUser">Hi,%1$s .</string>
     <string name="book_summary">Summary</string>
-    <string name="some_bigtext">E_Book E_Book E_Book E_Book E_Book E_Book E_Book v v E_Book E_Book E_Book E_Book E_Book E_Book E_Book v  E_Book E_Book E_Book E_Book E_Book E_Book v E_Book E_Book E_Book E_Book E_Book E_Book E_Bookv E_Book E_Book E_Book E_BookE_Book E_Book E_Book E_BookE_Book v E_Book v E_Book E_Book vvvE_Book E_Book E_Book vv E_Book E_Book E_Book vv E_Book v vv E_Book  E_BookE_BookE_Book E_Book E_Book E_Book E_Book E_Book vv v E_Book vvv v v E_Book E_Book v  v v v v v v  v E_Bookv E_Book  v E_BookE_Book E_Book v v v E_Book v E_Bookvv vvv vE_BookE_Book E_BookE_Book E_BookE_Book E_BookE_BookE_BookE_Book</string>
+    <string name="some_bigtext" translatable="false">E_Book E_Book E_Book E_Book E_Book E_Book E_Book v v E_Book E_Book E_Book E_Book E_Book E_Book E_Book v  E_Book E_Book E_Book E_Book E_Book E_Book v E_Book E_Book E_Book E_Book E_Book E_Book E_Bookv E_Book E_Book E_Book E_BookE_Book E_Book E_Book E_BookE_Book v E_Book v E_Book E_Book vvvE_Book E_Book E_Book vv E_Book E_Book E_Book vv E_Book v vv E_Book  E_BookE_BookE_Book E_Book E_Book E_Book E_Book E_Book vv v E_Book vvv v v E_Book E_Book v  v v v v v v  v E_Bookv E_Book  v E_BookE_Book E_Book v v v E_Book v E_Bookvv vvv vE_BookE_Book E_BookE_Book E_BookE_Book E_BookE_BookE_BookE_Book</string>
     <string name="library">Library</string>
     <string name="favorites">Favorites</string>
     <string name="setting">Settings</string>
@@ -52,4 +52,9 @@
 
     <string name="you_show_select_atleast">You should select at least 3 typs.</string>
     <string name="downloads">Downloads</string>
+    <string name="search_title">Search</string>
+    <string name="search_hint">Please search</string>
+    <string name="search" translatable="false">Search</string>
+    <string name="logout" translatable="false">Sign out</string>
+    <string name="you_want_sing_out" translatable="false">Are you that you want to sign out</string>
 </resources>

@@ -44,7 +44,7 @@ data class Book(
     }
 
     override fun writeToParcel(p0: Parcel?, p1: Int) {
-        TODO("Not yet implemented")
+
     }
 
     override fun equals(other: Any?): Boolean {

@@ -12,11 +12,14 @@ import android.widget.Toast
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import com.karim_mesghouni.e_book.R
 import com.karim_mesghouni.e_book.databinding.FragmentOverviewBinding
 import com.karim_mesghouni.e_book.domain.Book
+import com.karim_mesghouni.e_book.helpers.checkNetwork
 import com.karim_mesghouni.e_book.helpers.download
+import com.karim_mesghouni.e_book.helpers.open
 import com.karim_mesghouni.e_book.repository.IRepository
 import com.karim_mesghouni.e_book.repository.Repository
 import com.karim_mesghouni.e_book.utils.Constants
@@ -38,12 +41,13 @@ class OverViewFragment : Fragment() {
          requireNotNull(this)
         val repository: IRepository<Book> = Repository(Book::class.java, Constants.BOOK_COLLECTION,requireContext())
         //get instance of the viewModelFactory
-        val viewModelFactory = OverviewViewModelFactory(book,requireContext(),repository)
+        val viewModelFactory = OverviewViewModelFactory(book,activity?.applicationContext!!,repository)
         ViewModelProvider(this, viewModelFactory).get(OverviewViewModel::class.java)
     }
     private lateinit var book: Book
     private val args: OverViewFragmentArgs by navArgs()
     private lateinit var binding: FragmentOverviewBinding
+    private lateinit var localUri:MutableMap<String,String>
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -69,14 +73,22 @@ class OverViewFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         binding.viewModel = viewModel
+        viewModel.localDownloadedList.observe(viewLifecycleOwner,{
+            localUri = it?:  mutableMapOf()
+        })
         binding.readBook.setOnClickListener {
            if (viewModel.isDownloaded.value!!)
                // open book
-                   Log.d(TAG,"book already downloaded")
-           else{
+               open(localUri[book.name],requireContext())
+           else if(checkNetwork(context)){
                checkPermission(this, book)
                viewModel.setDown(true)
+           }else{
+               Toast.makeText(context, R.string.check_your_connection, Toast.LENGTH_SHORT).show()
            }
+        }
+        binding.backOverview.setOnClickListener {
+            findNavController().popBackStack()
         }
 
         binding.listenBook.setOnClickListener {
@@ -87,6 +99,9 @@ class OverViewFragment : Fragment() {
             if (it.contains(book.name))
                 viewModel.setFav(true)
 
+        })
+        viewModel.localDownloadedList.observe(viewLifecycleOwner,{
+            localUri = it?:  mutableMapOf()
         })
         binding.overviewAddFav.setOnClickListener {
             Log.d(TAG, "fav button clicked")

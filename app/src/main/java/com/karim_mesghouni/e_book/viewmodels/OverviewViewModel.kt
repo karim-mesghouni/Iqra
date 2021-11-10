@@ -2,19 +2,27 @@ package com.karim_mesghouni.e_book.viewmodels
 
 import android.content.Context
 import android.util.Log
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.ViewModel
-import androidx.lifecycle.ViewModelProvider
+import androidx.lifecycle.*
 import com.karim_mesghouni.e_book.domain.Book
+import com.karim_mesghouni.e_book.helpers.loadBooksFromExternalStorage
 import com.karim_mesghouni.e_book.repository.IRepository
 import com.karim_mesghouni.e_book.utils.getUserId
+import kotlinx.coroutines.launch
 
 class OverviewViewModel(private val mBook: Book,private val context: Context, private val repository: IRepository<Book>) : ViewModel() {
 
     private val _book = MutableLiveData<Book>()
-    private var _favList = MutableLiveData<List<String?>>()
-    private var _downloadedList = MutableLiveData<List<String?>>()
+    private val _favList : MutableLiveData<List<String?>> by lazy {
+        MutableLiveData<List<String?>>().also {
+            it.value = emptyList()
+        }
+    }
+    private val _downloadedList : MutableLiveData<List<String?>> by lazy {
+        MutableLiveData<List<String?>>().also {
+            it.value = emptyList()
+        }
+    }
+    private var _localDownloadedList = MutableLiveData<MutableMap<String,String>?>()
     private val _isFav = MutableLiveData(false)
     private val _isDownloaded = MutableLiveData(false)
 
@@ -28,6 +36,9 @@ class OverviewViewModel(private val mBook: Book,private val context: Context, pr
     val isFav: LiveData<Boolean>
         get() = _isFav
 
+    val localDownloadedList: LiveData<MutableMap<String,String>?>
+        get() = _localDownloadedList
+
     val isDownloaded: LiveData<Boolean>
         get() = _isDownloaded
 
@@ -40,13 +51,16 @@ class OverviewViewModel(private val mBook: Book,private val context: Context, pr
 
 
     init {
-
+        viewModelScope.launch{
+            _localDownloadedList.value = loadBooksFromExternalStorage(context.contentResolver)
+        }
         repository.getList("downloads", getUserId(context)).addOnCompleteListener {
-            _downloadedList.value = it.result
-            _isDownloaded.value = _downloadedList.value?.contains(mBook.name)
+            _downloadedList.value = it.result?: emptyList()
+            _isDownloaded.value = _downloadedList.value?.contains(mBook.name)?:false
+            Log.d("is",_isDownloaded.value.toString())
         }
         repository.getList("favorites",getUserId(context)).addOnCompleteListener {
-           _favList.value = it.result
+           _favList.value = it.result?: emptyList()
             Log.d(TAG,it.result.toString())
         }
         _book.value = mBook
@@ -55,22 +69,27 @@ class OverviewViewModel(private val mBook: Book,private val context: Context, pr
 
 
 
-    private fun getFavorites(){
-        _favList.value = getList()
-        Log.d(TAG,_favList.value.toString())
-    }
 
-    private fun getList(): List<String> {
-        var interests = emptyList<String>()
-        repository.getList("favorites",getUserId(context)).addOnCompleteListener {
-            interests = it.result ?: emptyList()
-            Log.d(TAG,it.result.toString())
-        }
-        return interests
-    }
+//    private fun getFavorites(){
+//        _favList.value = getList()
+//        Log.d(TAG,_favList.value.toString())
+//    }
+//
+//    private fun getList(): List<String> {
+//        var interests = emptyList<String>()
+//        repository.getList("favorites",getUserId(context)).addOnCompleteListener {
+//            interests = it.result ?: emptyList()
+//            Log.d(TAG,it.result.toString())
+//        }
+//        return interests
+//    }
 
 
-
+//    fun loadLocalData(){
+//        viewModelScope.launch{
+//            _localDownloadedList.value = loadBooksFromExternalStorage(context.contentResolver)
+//        }
+//    }
 
     override fun onCleared() {
         super.onCleared()

@@ -20,9 +20,9 @@
     <com.google.android.material.appbar.AppBarLayout
         android:id="@+id/overview_appBarLayout"
         android:layout_width="match_parent"
-        android:background="#1A999C"
-        app:elevation="0dp"
+        android:background="#FFFFFF"
         android:elevation="0dp"
+        app:elevation="0dp"
         android:layout_height="?android:attr/actionBarSize"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -42,6 +42,7 @@
                 app:layout_constraintTop_toTopOf="parent" />
 
             <ImageView
+                android:id="@+id/back_overview"
                 android:layout_width="@dimen/_30sdp"
                 android:layout_height="@dimen/_20sdp"
                 android:layout_marginStart="@dimen/_10sdp"
@@ -82,7 +83,7 @@
                 android:id="@+id/overview_card_image"
                 android:layout_width="@dimen/_207sdp"
                 android:layout_height="@dimen/_280sdp"
-                android:layout_marginTop="@dimen/_15sdp"
+                android:layout_marginTop="@dimen/_5sdp"
                 app:cardCornerRadius="@dimen/_4sdp"
                 app:cardElevation="@dimen/_10sdp"
                 app:layout_constraintEnd_toEndOf="parent"

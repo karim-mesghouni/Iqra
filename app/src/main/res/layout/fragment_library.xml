@@ -1,14 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout
-    >
+<layout xmlns:android="http://schemas.android.com/apk/res/android">
     <data>
         <variable
             name="viewModel"
             type="com.karim_mesghouni.e_book.viewmodels.LibraryViewModel" />
     </data>
 
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
+<androidx.constraintlayout.widget.ConstraintLayout android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
@@ -19,9 +17,8 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        android:elevation="0dp"
-        app:elevation="0dp"
-        android:background="#1A999C"
+
+        android:background="#FFFFFF"
         android:layout_width="match_parent"
         android:layout_height="?android:attr/actionBarSize">
 
@@ -59,7 +56,6 @@
                     android:textAppearance="@style/toolbar_text_appearance"
                     android:text="@string/library"
                     android:gravity="center"
-                    android:textColor="@color/white"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="@+id/materialToolbar"
                     app:layout_constraintTop_toTopOf="parent" />
@@ -67,7 +63,52 @@
 
         </androidx.constraintlayout.widget.ConstraintLayout>
     </com.google.android.material.appbar.AppBarLayout>
+    <com.facebook.shimmer.ShimmerFrameLayout
+        android:id="@+id/downloads_shimmer_frameLayout"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/_170sdp"
+        app:layout_constraintTop_toBottomOf="@id/library_appBarLayout"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent">
+        <TextView
+            android:layout_width="@dimen/_90sdp"
+            android:layout_height="@dimen/_12sdp"
+            android:background="@color/gray"
+            android:layout_marginStart="@dimen/_10sdp"
+            android:layout_marginTop="@dimen/_19sdp"/>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_gravity="bottom">
+            <include layout="@layout/book_item_large_shimmer"
+                android:layout_gravity="bottom"
+                android:layout_height="@dimen/_125sdp"
+                android:layout_width="@dimen/_65sdp"
+                android:layout_marginStart="@dimen/_10sdp"/>
+            <include layout="@layout/book_item_large_shimmer"
+                android:layout_gravity="bottom"
+                android:layout_height="@dimen/_125sdp"
+                android:layout_width="@dimen/_65sdp"
+                android:layout_marginStart="@dimen/_10sdp"/>
+            <include layout="@layout/book_item_large_shimmer"
+                android:layout_gravity="bottom"
+                android:layout_height="@dimen/_125sdp"
+                android:layout_width="@dimen/_65sdp"
+                android:layout_marginStart="@dimen/_10sdp"/>
+            <include layout="@layout/book_item_large_shimmer"
+                android:layout_gravity="bottom"
+                android:layout_height="@dimen/_125sdp"
+                android:layout_width="@dimen/_65sdp"
+                android:layout_marginStart="@dimen/_10sdp" />
+            <include layout="@layout/book_item_large_shimmer"
+                android:layout_gravity="bottom"
+                android:layout_height="@dimen/_125sdp"
+                android:layout_width="@dimen/_65sdp"
+                android:layout_marginStart="@dimen/_10sdp"/>
 
+        </LinearLayout>
+    </com.facebook.shimmer.ShimmerFrameLayout>
     <include
         android:id="@+id/library_include"
         android:layout_width="match_parent"
@@ -81,7 +122,7 @@
         android:id="@+id/favorites"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/favorites"
+
 
        android:textAppearance="@style/TextAppearance.Headline"
         app:layout_constraintTop_toBottomOf="@id/library_include"
@@ -102,6 +143,45 @@
         android:layout_marginEnd="@dimen/_10sdp"
         android:layout_marginTop="@dimen/_10sdp"
         tools:listitem="@layout/book_item_fav"/>
+
+    <com.facebook.shimmer.ShimmerFrameLayout
+        android:id="@+id/fav_shimmer_frameLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@id/library_include"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintStart_toEndOf="parent">
+
+        <TextView
+            android:layout_width="@dimen/_90sdp"
+            android:layout_height="@dimen/_12sdp"
+            android:background="@color/gray"
+            android:layout_marginStart="@dimen/_10sdp"
+            android:layout_marginTop="@dimen/_19sdp"/>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_marginTop="@dimen/_40sdp">
+        <include layout="@layout/book_item_fav_shimmer"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/_10sdp"
+            android:layout_marginTop="@dimen/_10sdp"
+            /><include layout="@layout/book_item_fav_shimmer"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/_10sdp"
+            android:layout_marginTop="@dimen/_13sdp"
+            /><include layout="@layout/book_item_fav_shimmer"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/_10sdp"
+            android:layout_marginTop="@dimen/_10sdp"
+            />
+
+        </LinearLayout>
+    </com.facebook.shimmer.ShimmerFrameLayout>
 
 
 

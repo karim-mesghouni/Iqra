@@ -20,6 +20,7 @@
             app:popEnterAnim="@android:anim/slide_in_left"
             app:popExitAnim="@android:anim/slide_out_right"
             app:popUpTo="@id/home_screen" />
+
     </fragment>
     <fragment
         android:id="@+id/setting_screen"
@@ -30,7 +31,16 @@
         android:id="@+id/library_screen"
         tools:layout="@layout/fragment_library"
         android:name="com.karim_mesghouni.e_book.ui.LibraryFragment"
-        android:label="LibraryFragment" />
+        android:label="LibraryFragment" >
+        <action
+            android:id="@+id/show_book_from_fav"
+            app:destination="@id/overViewFragment"
+            app:enterAnim="@android:anim/slide_in_left"
+            app:exitAnim="@android:anim/slide_out_right"
+            app:popEnterAnim="@android:anim/slide_in_left"
+            app:popExitAnim="@android:anim/slide_out_right"
+            app:popUpTo="@id/home_screen"/>
+    </fragment>
     <fragment
         android:id="@+id/overViewFragment"
         tools:layout="@layout/fragment_overview"
@@ -39,5 +49,19 @@
         <argument
             android:name="book"
             app:argType="com.karim_mesghouni.e_book.domain.Book" />
+    </fragment>
+    <fragment
+        android:id="@+id/search_screen"
+        android:name="com.karim_mesghouni.e_book.ui.SearchFragment"
+        android:label="fragment_search"
+        tools:layout="@layout/fragment_search" >
+        <action
+            android:id="@+id/show_book_from_search"
+            app:destination="@id/overViewFragment"
+            app:enterAnim="@android:anim/slide_in_left"
+            app:exitAnim="@android:anim/slide_out_right"
+            app:popEnterAnim="@android:anim/slide_in_left"
+            app:popExitAnim="@android:anim/slide_out_right"
+            app:popUpTo="@id/search_screen" />
     </fragment>
 </navigation>

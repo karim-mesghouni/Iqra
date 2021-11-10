@@ -19,7 +19,7 @@
             android:layout_height="wrap_content"
             android:textAllCaps="true"
             android:textAppearance="@style/TextAppearance.Headline"
-            android:text="@string/downloads" />
+             />
         <ImageView
             android:id="@+id/more_book_larg"
             android:layout_width="wrap_content"

@@ -6,14 +6,18 @@ import android.animation.Animator
 import android.animation.AnimatorListenerAdapter
 import android.os.Bundle
 import android.util.Log
+import android.view.Menu
 import android.view.View
 import android.view.animation.AnimationUtils
 import androidx.appcompat.app.AppCompatActivity
+import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.setupWithNavController
 
 import com.karim_mesghouni.e_book.R
 import com.karim_mesghouni.e_book.databinding.ActivityMainBinding
+import kotlinx.coroutines.launch
+import java.io.File
 
 
 class MainActivity : AppCompatActivity() {
@@ -31,12 +35,6 @@ class MainActivity : AppCompatActivity() {
             .replace(R.id.fragment_container_main,finalHost)
             .setPrimaryNavigationFragment(finalHost)
             .commit()
-
-
-
-
-
-
     }
 
     override fun onStart() {
@@ -50,26 +48,27 @@ class MainActivity : AppCompatActivity() {
         }
 
         HomeFragment.listener = {
-            Log.d("Lis",it.toString())
+
             if (it)
-                viewVisibleAnimator(binding.navView)
+                binding.navView.visibility = View.VISIBLE
             else
-                viewGoneAnimator(binding.navView)
+               binding.navView.visibility = View.GONE
         }
 
         LibraryFragment.listener = {
-            Log.d("Lis",it.toString())
+
             if (it)
-                viewVisibleAnimator(binding.navView)
+                binding.navView.visibility = View.VISIBLE
             else
-                viewGoneAnimator(binding.navView)
+                binding.navView.visibility = View.GONE
         }
     }
 
    private fun viewGoneAnimator(view: View) {
         view.animate()
+
             .alpha(0f)
-            .setDuration(500)
+
 
             .setListener(object : AnimatorListenerAdapter() {
                 override fun onAnimationEnd(animation: Animator) {
@@ -82,22 +81,11 @@ class MainActivity : AppCompatActivity() {
     private fun viewVisibleAnimator(view: View) {
         view.animate()
             .alpha(1f)
-            .setDuration(500)
+
             .setListener(object : AnimatorListenerAdapter() {
                 override fun onAnimationEnd(animation: Animator) {
                     view.visibility = View.VISIBLE
                 }
             })
-
-
     }
-
-
-
-
-
-
-
-
-
 }

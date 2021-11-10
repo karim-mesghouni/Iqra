@@ -70,7 +70,7 @@ class BookCategoryAdapter(
         titledSectionRecycler?.run {
             this.setRecycledViewPool(viewPool)
             this.layoutManager = layoutManager
-            this.adapter = BookAdapter(item.books,listener)
+            this.adapter = BookAdapter(item.books,listener = listener,mLayout = R.layout.book_item)
         }
 
         //restore horizontal scroll state

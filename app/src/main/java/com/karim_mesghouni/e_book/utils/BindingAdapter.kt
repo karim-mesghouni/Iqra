@@ -7,8 +7,7 @@ import androidx.recyclerview.widget.RecyclerView
 import coil.load
 import com.karim_mesghouni.e_book.R
 import com.karim_mesghouni.e_book.domain.Book
-import com.karim_mesghouni.e_book.ui.adapter.BookAdapter
-import com.karim_mesghouni.e_book.ui.adapter.FavListAdapter
+import com.karim_mesghouni.e_book.ui.adapter.ListAdapter
 
 
 @BindingAdapter("fav")
@@ -26,7 +25,7 @@ fun setImage(image: ImageView,url:String){
 @BindingAdapter("listData")
 fun bind(recyclerView: RecyclerView,data:List<Book>?){
     Log.d("BindingAdapter",data.toString())
-   val adapter = recyclerView.adapter as FavListAdapter
+   val adapter = recyclerView.adapter as ListAdapter
    adapter.submitList(data)
 
 }

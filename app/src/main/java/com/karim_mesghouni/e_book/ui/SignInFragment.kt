@@ -120,7 +120,7 @@ class SignInFragment:Fragment() {
     private fun checkUser(user: FirebaseUser?){
         val repo : IRepository<User> = Repository(User::class.java, Constants.USER_COLLECTION,requireContext())
 //        var isExist:Boolean
-        repo.get(user?.uid!!).addOnCompleteListener {
+        repo.get(user?.uid!!).addOnCompleteListener { it ->
             it.result?.let {
                 if (null == it.id){
                     // here probably error
@@ -153,6 +153,8 @@ class SignInFragment:Fragment() {
         SharedPref.init(activity?.baseContext)
         SharedPref.write(SharedPref.IS_THERE,true)
         SharedPref.write(SharedPref.USER_ID,FirebaseAuth.getInstance().currentUser?.uid)
+        SharedPref.write(SharedPref.USER_NAME,FirebaseAuth.getInstance().currentUser?.displayName)
+        SharedPref.write(SharedPref.USER_EMAIL,FirebaseAuth.getInstance().currentUser?.email)
     }
 
     companion object {

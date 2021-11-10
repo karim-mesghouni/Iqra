@@ -30,7 +30,7 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                app:menu="@menu/read_menu"
+
                 app:title="@{book_title}"
                 app:titleTextColor="@color/white"
                 app:titleTextAppearance="@style/toolbar_text_appearance"

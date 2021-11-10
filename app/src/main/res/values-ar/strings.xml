@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">إقرأ</string>
+    <string name="book_market">Bookmark</string>
+    <string name="read_book">إقرأ</string>
+    <string name="listen_book">إستمع</string>
+    <string name="book_size">ألحجم</string>
+    <string name="launched">النشر</string>
+    <string name="book_genre">النوع</string>
+    <string name="notification_title">تنزيل</string>
+    <string name="notification_description_download">جار التحميل %1$s…</string>
+    <string name="notification_description_completed">%1$s تم التحميل.</string>
+    <string name="greatUser">مرحبا,%1$s .</string>
+    <string name="book_summary">الملخص</string>
+    <string name="library">المكتبة</string>
+    <string name="favorites">المفضلة</string>
+    <string name="setting">الاعدادات</string>
+    <string name="profile">الملف الشخصي</string>
+    <string name="name">الاسم</string>
+    <string name="Account">الحساب</string>
+    <string name="genegal">عام</string>
+    <string name="language">اللغة</string>
+    <string name="theme">الثيم</string>
+    <string name="about">حول هذا التطبيق</string>
+    <string name="by_karim">تم انجازه من طرف : عبد الكريم مسغوني</string>
+    <string name="version">النسخة:0.0.1</string>
+    <string name="welcome">مرحبا</string>
+    <string name="what_are_you_interested_in">ماهي اهتماماتك</string>
+    <string name="food">طعام</string>
+    <string name="history">تاريخ</string>
+    <string name="memoir">مذكرات</string>
+    <string name="politics">السياسة</string>
+    <string name="art">الفن</string>
+    <string name="money">المال</string>
+    <string name="technology">التكنولوجيا</string>
+    <string name="programming">برمجة</string>
+    <string name="health">الصحة</string>
+    <string name="productivity">الانجاز</string>
+    <string name="economy">اقتصاد</string>
+    <string name="self_help">تطوير الذات</string>
+    <string name="young_adult">شباب</string>
+    <string name="children">كتب الاطفال</string>
+    <string name="crime_thriller">الجريمة</string>
+    <string name="literary_fiction">Literary Fiction</string>
+    <string name="science_fiction">خيال علمي</string>
+    <string name="done">تم</string>
+    <string name="google_signin">سجل الدخول مع جوجل</string>
+    <string name="notyet">ليس بعد</string>
+    <string name="download_completed">تم التحميل</string>
+    <string name="download_failed">فشل التنزيل</string>
+    <string name="check_your_connection">تحقق من الشبكة لديك!</string>
+
+    <string name="you_show_select_atleast">يجب اخيار ثلاث عناصر عى الاقل</string>
+    <string name="downloads">التنزيلات</string>
+    <string name="search_title">Search</string>
+    <string name="search_hint">Please search</string>
+</resources>

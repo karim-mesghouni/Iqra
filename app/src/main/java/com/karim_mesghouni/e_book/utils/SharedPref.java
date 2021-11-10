@@ -9,6 +9,8 @@ public class SharedPref
     private static SharedPreferences mSharedPref;
     public static final String IS_THERE = "Authentication_Status";
     public static final String USER_ID = "user_id";
+    public static final String USER_NAME = "user_name";
+    public static final String USER_EMAIL = "user_email";
 
     private SharedPref()
     {

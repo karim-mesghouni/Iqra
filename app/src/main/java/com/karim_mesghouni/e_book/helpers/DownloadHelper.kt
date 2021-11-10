@@ -27,20 +27,7 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 
 
-@SuppressLint("StringFormatMatches")
-fun downloadFile(ref: StorageReference?, fileName: String, context: Context) {
-    // check network connection
 
-    if (!checkNetwork(context)) {
-        Toast.makeText(context, R.string.check_your_connection, LENGTH_SHORT).show()
-        return
-    }
-
-    // get file path that saved in the book
-    val file = ref?.child("books/$fileName.pdf")?.downloadUrl
-
-
-}
 
 // check network connection
 fun checkNetwork(context: Context?): Boolean {
@@ -63,49 +50,6 @@ fun download(activity: FragmentActivity, book: Book) {
     val enqueue = manager.enqueue(request)
 }
 
-private suspend fun loadPhotosFromExternalStorage(resolver: ContentResolver): List<String> {
-    return withContext(Dispatchers.IO) {
-        val collection = sdk29AndUp {
-            MediaStore.Files.getContentUri(MediaStore.VOLUME_EXTERNAL)
-        } ?: MediaStore.Files.getContentUri("external")
-
-        val projection = arrayOf(
-            MediaStore.Files.FileColumns._ID,
-            MediaStore.Files.FileColumns.DISPLAY_NAME
-        )
-
-        val selection = MediaStore.Files.FileColumns.BUCKET_DISPLAY_NAME + " =? "
-        val args = arrayOf("karim")
-        val photos = mutableListOf<String>()
-
-        resolver.query(
-            collection,
-            projection,
-            selection,
-            args,
-            null
-        )?.use { cursor ->
-            val idColumn = cursor.getColumnIndexOrThrow(MediaStore.Files.FileColumns._ID)
-            val displayNameColumn =
-                cursor.getColumnIndexOrThrow(MediaStore.Files.FileColumns.DISPLAY_NAME)
-
-
-            while (cursor.moveToNext()) {
-                val id = cursor.getLong(idColumn)
-                val displayName = cursor.getString(displayNameColumn)
-                val contentUri = ContentUris.withAppendedId(
-                    MediaStore.Files.getContentUri("external"),
-                    id
-                )
-                if (displayName.contains("pdf"))
-                    photos.add(contentUri.toString())
-            }
-            photos
-        } ?: listOf()
-    }
-
-
-}
 
 inline fun <T> sdk29AndUp(onSdk29: () -> T): T? {
     return if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {

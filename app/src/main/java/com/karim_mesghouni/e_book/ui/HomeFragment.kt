@@ -1,8 +1,6 @@
 package com.karim_mesghouni.e_book.ui
 
 
-
-import android.annotation.SuppressLint
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
@@ -30,15 +28,15 @@ import com.karim_mesghouni.e_book.viewmodels.HomeViewModelFactory
 /**
  * This [Fragment] represent home screen that will show all books .
  */
- class HomeFragment : Fragment(){
+class HomeFragment : Fragment() {
     private lateinit var binding: FragmentHomeScreenBinding
-
 
 
     //private var categories: MutableList<BookCategory> = mutableListOf()
     private val viewModel: HomeViewModel by lazy {
         requireNotNull(this)
-        val repository: IRepository<Book> = Repository(Book::class.java, Constants.BOOK_COLLECTION,requireContext())
+        val repository: IRepository<Book> =
+            Repository(Book::class.java, Constants.BOOK_COLLECTION, requireContext())
         //get instance of the viewModelFactory
         val viewModelFactory = HomeViewModelFactory(repository, requireContext())
         ViewModelProvider(this, viewModelFactory).get(HomeViewModel::class.java)
@@ -64,7 +62,7 @@ import com.karim_mesghouni.e_book.viewmodels.HomeViewModelFactory
         return binding.root
     }
 
-   // @SuppressLint("NotifyDataSetChanged")
+    // @SuppressLint("NotifyDataSetChanged")
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         binding.readerImage.load(auth.currentUser?.photoUrl)
@@ -75,9 +73,13 @@ import com.karim_mesghouni.e_book.viewmodels.HomeViewModelFactory
         categoryAdapter = BookCategoryAdapter(listener = {
 
             findNavController().navigate(HomeFragmentDirections.showOverView(it))
-        },more = {
+        }, more = {
 
         })
+
+//        binding.searchBook.setOnClickListener {
+//            findNavController().navigate(HomeFragmentDirections.search())
+//        }
         /**
          *  I call newReleases in trendingObserver to keep trending list in the first index and newReleases in the second index
          **/
@@ -90,24 +92,25 @@ import com.karim_mesghouni.e_book.viewmodels.HomeViewModelFactory
         })
         setUpRv()
     }
+
     // observe new releases books
     //@SuppressLint("NotifyDataSetChanged")
-    private fun observeNewReleases(){
+    private fun observeNewReleases() {
         viewModel.getNewReleases().observe(viewLifecycleOwner, {
             categoryAdapter.categories.add(it)
             categoryAdapter.notifyDataSetChanged()
             observeForYou()
         })
     }
+
     // observe for you books
     //@SuppressLint("NotifyDataSetChanged")
-    private fun observeForYou(){
-         viewModel.getForYou().observe(viewLifecycleOwner, {
-             categoryAdapter.categories.add(it)
-             categoryAdapter.notifyDataSetChanged()
-         })
+    private fun observeForYou() {
+        viewModel.getForYou().observe(viewLifecycleOwner, {
+            categoryAdapter.categories.add(it)
+            categoryAdapter.notifyDataSetChanged()
+        })
     }
-
 
 
     private fun setUpRv() {
@@ -118,7 +121,7 @@ import com.karim_mesghouni.e_book.viewmodels.HomeViewModelFactory
             enforceSingleScrollDirection()
         }
 
-        binding.homeScreenMainRv.rv.addOnScrollListener(object : RecyclerView.OnScrollListener(){
+        binding.homeScreenMainRv.rv.addOnScrollListener(object : RecyclerView.OnScrollListener() {
             override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {
                 if (dy > 0) {
                     listener?.invoke(false)
@@ -128,27 +131,17 @@ import com.karim_mesghouni.e_book.viewmodels.HomeViewModelFactory
                 }
             }
 
-            override fun onScrollStateChanged(recyclerView: RecyclerView, newState: Int) {
-                super.onScrollStateChanged(recyclerView, newState)
-            }
         })
 
 
 
 
-
-    }
-
-    companion object{
-        var listener: ((Boolean)->Unit)? = null
     }
 
 
-
-
-
-
-
+    companion object {
+        var listener: ((Boolean) -> Unit)? = null
+    }
 
 
 }

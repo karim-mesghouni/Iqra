@@ -102,5 +102,7 @@ class InterestedFragment : Fragment() {
         SharedPref.init(activity?.baseContext)
         SharedPref.write(SharedPref.IS_THERE,true)
         SharedPref.write(SharedPref.USER_ID,FirebaseAuth.getInstance().currentUser?.uid)
+        SharedPref.write(SharedPref.USER_NAME,FirebaseAuth.getInstance().currentUser?.displayName)
+        SharedPref.write(SharedPref.USER_ID,FirebaseAuth.getInstance().currentUser?.email)
     }
 }

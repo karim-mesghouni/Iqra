@@ -15,47 +15,47 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:cardCornerRadius="@dimen/_3sdp">
         <ImageView
-            android:id="@+id/fav_book_image"
+            android:id="@+id/fav_book_image_sh"
             android:layout_width="@dimen/_50sdp"
             android:layout_height="@dimen/_95sdp"
-            tools:srcCompat="@tools:sample/backgrounds/scenic"
+            android:background="@color/gray"
             android:scaleType="centerCrop"/>
     </com.google.android.material.card.MaterialCardView>
 
     <TextView
-        android:id="@+id/fav_book_title"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:id="@+id/fav_book_title_sh"
+        android:layout_width="@dimen/_70sdp"
+        android:layout_height="@dimen/_10sdp"
         android:layout_marginStart="@dimen/_10sdp"
         android:fontFamily="@font/montserrat_bold"
         android:lines="1"
         android:maxLength="20"
-        android:textColor="@color/costume_black"
+        android:background="@color/gray"
         android:textSize="@dimen/_13ssp"
         app:layout_constraintEnd_toStartOf="@+id/favorite_book"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toEndOf="@id/card_item_fav"
         app:layout_constraintTop_toTopOf="parent"
-        tools:text="Coming" />
+        />
     <TextView
-        android:id="@+id/fav_book_author"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:id="@+id/fav_book_author_sh"
+        android:layout_width="@dimen/_50sdp"
+        android:layout_height="@dimen/_10sdp"
         app:layout_constraintStart_toEndOf="@id/card_item_fav"
-        app:layout_constraintTop_toBottomOf="@id/fav_book_title"
+        app:layout_constraintTop_toBottomOf="@id/fav_book_title_sh"
         android:layout_marginStart="@dimen/_10sdp"
         android:layout_marginTop="@dimen/_5sdp"
         android:textSize="@dimen/_11ssp"
         android:fontFamily="@font/montserrat_regular"
-        android:textColor="@color/costume_black"
-        tools:text="Author"/>
-<!--    <ImageView-->
-<!--        android:id="@+id/favorite_book"-->
-<!--        android:layout_width="@dimen/_20sdp"-->
-<!--        android:layout_height="@dimen/_20sdp"-->
-<!--        android:layout_marginEnd="@dimen/_20sdp"-->
-<!--        android:src="@drawable/ic_bookmark"-->
-<!--        app:layout_constraintEnd_toEndOf="parent"-->
-<!--        app:layout_constraintTop_toTopOf="parent" />-->
+       android:background="@color/gray"
+       />
+    <ImageView
+        android:id="@+id/favorite_book"
+        android:layout_width="@dimen/_20sdp"
+        android:layout_height="@dimen/_20sdp"
+        android:layout_marginEnd="@dimen/_20sdp"
+        android:src="@drawable/ic_bookmark"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

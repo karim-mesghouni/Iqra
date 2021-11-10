@@ -45,7 +45,7 @@
         android:layout_marginBottom="@dimen/_5sdp"
         android:background="@drawable/bottom_nav_background"
         android:fitsSystemWindows="true"
-        app:elevation="0dp"
+        app:elevation="5dp"
         app:itemIconSize="@dimen/_22sdp"
         app:itemIconTint="@drawable/bottom_navigation_color_selector"
         app:labelVisibilityMode="unlabeled"
