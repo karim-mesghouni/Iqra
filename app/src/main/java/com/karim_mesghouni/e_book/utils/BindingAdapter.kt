@@ -12,10 +12,12 @@ import com.karim_mesghouni.e_book.ui.adapter.ListAdapter
 
 @BindingAdapter("fav")
 fun setfav(image:ImageView,isFav:Boolean){
-    if (isFav)
+    if (isFav) {
+        Log.d("fav",isFav.toString())
         image.setImageResource(R.drawable.ic_bookmark_black)
-    else
+    }else {
         image.setImageResource(R.drawable.ic_bookmark)
+    }
 }
 @BindingAdapter("imageUrl")
 fun setImage(image: ImageView,url:String){

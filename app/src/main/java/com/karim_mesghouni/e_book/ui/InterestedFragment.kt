@@ -52,10 +52,7 @@ class InterestedFragment : Fragment() {
             saveUser()
             addUser()
         }
-        list.apply {
-            if (this.size >= 3)
-                binding.next.isEnabled = true
-        }
+
     }
 
     private fun finish() {

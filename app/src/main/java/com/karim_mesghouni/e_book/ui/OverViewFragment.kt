@@ -48,31 +48,11 @@ class OverViewFragment : Fragment() {
     private lateinit var book: Book
     private val args: OverViewFragmentArgs by navArgs()
     private lateinit var binding: FragmentOverviewBinding
-    private var localUri: MutableMap<String, String> = mutableMapOf()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         // get the selected book from args
         book = args.book
-        Dexter.withContext(activity?.applicationContext)
-            .withPermission(Manifest.permission.WRITE_EXTERNAL_STORAGE)
-            .withListener(object : PermissionListener {
-                override fun onPermissionGranted(response: PermissionGrantedResponse) {
-                    viewModel.loadLocal()
-                }
-
-                override fun onPermissionDenied(response: PermissionDeniedResponse) {
-                    response.requestedPermission
-                }
-
-                override fun onPermissionRationaleShouldBeShown(
-                    permission: PermissionRequest,
-                    token: PermissionToken
-                ) {
-
-                }
-            }).check()
-
 
     }
 
@@ -83,9 +63,6 @@ class OverViewFragment : Fragment() {
     ): View {
         binding =
             DataBindingUtil.inflate(layoutInflater, R.layout.fragment_overview, container, false)
-
-
-
         return binding.root
     }
 
@@ -93,12 +70,13 @@ class OverViewFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         binding.viewModel = viewModel
-        viewModel.localDownloadedList.observe(viewLifecycleOwner, {
-            localUri = it ?: mutableMapOf()
-        })
+        var isDownloaded = false
+       viewModel.isDownloaded.observe(viewLifecycleOwner,{
+           isDownloaded = it
+       })
         binding.readBook.setOnClickListener {
 
-            if (!viewModel.isDownloaded.value!!) {
+            if (!isDownloaded) {
                 if (checkNetwork(context)) {
                     checkPermission(this, book)
                     viewModel.setDown(true)
@@ -107,11 +85,8 @@ class OverViewFragment : Fragment() {
                         .show()
                 }
             } else {
-
-                viewModel.localDownloadedList.observe(viewLifecycleOwner, {
-                    open(it?.get(book.name), requireContext())
-                })
-
+                Toast.makeText(context, R.string.already_downloaded, Toast.LENGTH_SHORT)
+                    .show()
             }
 
 
@@ -120,18 +95,14 @@ class OverViewFragment : Fragment() {
             findNavController().popBackStack()
         }
 
-        binding.listenBook.setOnClickListener {
-            Toast.makeText(context, R.string.notyet, Toast.LENGTH_SHORT).show()
-        }
+
 
         viewModel.favList.observe(viewLifecycleOwner, {
             if (it.contains(book.name))
                 viewModel.setFav(true)
 
         })
-        viewModel.localDownloadedList.observe(viewLifecycleOwner, {
-            localUri = it ?: mutableMapOf()
-        })
+
         binding.overviewAddFav.setOnClickListener {
             Log.d(TAG, "fav button clicked")
             if (viewModel.isFav.value!!) viewModel.setFav(false) else viewModel.setFav(true)

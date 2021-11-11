@@ -33,8 +33,8 @@
             android:layout_marginTop="@dimen/_27sdp"
             android:textAppearance="@style/toolbar_text_appearance"
             android:text="@string/what_are_you_interested_in"
-            android:textSize="@dimen/_19ssp"
-
+            android:textSize="@dimen/_18ssp"
+android:padding="@dimen/_8sdp"
             android:layout_gravity="center_horizontal"/>
 
         <LinearLayout
@@ -53,7 +53,7 @@
                 android:layout_margin="@dimen/_5sdp"
                 android:textColor="@color/costume_black"
                 android:textSize="@dimen/_13ssp"
-                android:padding="@dimen/_8sdp"/>
+                android:padding="@dimen/_5sdp"/>
 
             <TextView
                 android:id="@+id/tech_type"
@@ -64,7 +64,7 @@
                 android:layout_margin="@dimen/_5sdp"
                 android:textColor="@color/costume_black"
                 android:textSize="@dimen/_13ssp"
-                android:padding="@dimen/_8sdp"/>
+                android:padding="@dimen/_5sdp"/>
 
             <TextView
                 android:id="@+id/economy_type"
@@ -75,7 +75,7 @@
                 android:layout_margin="@dimen/_5sdp"
                 android:textColor="@color/costume_black"
                 android:textSize="@dimen/_13ssp"
-                android:padding="@dimen/_8sdp"/>
+                android:padding="@dimen/_5sdp"/>
 
         </LinearLayout>
         <LinearLayout
@@ -95,7 +95,7 @@
 
                 android:textColor="@color/costume_black"
                 android:textSize="@dimen/_13ssp"
-                android:padding="@dimen/_8sdp"/>
+                android:padding="@dimen/_5sdp"/>
 
             <TextView
                 android:id="@+id/foodtype"
@@ -106,7 +106,7 @@
                 android:layout_margin="@dimen/_5sdp"
                 android:textColor="@color/costume_black"
                 android:textSize="@dimen/_13ssp"
-                android:padding="@dimen/_8sdp"/>
+                android:padding="@dimen/_5sdp"/>
 
             <TextView
                 android:id="@+id/productivity_type"
@@ -117,7 +117,7 @@
                 android:layout_margin="@dimen/_5sdp"
                 android:textColor="@color/costume_black"
                 android:textSize="@dimen/_13ssp"
-                android:padding="@dimen/_8sdp"/>
+                android:padding="@dimen/_5sdp"/>
 
         </LinearLayout>
         <LinearLayout
@@ -136,7 +136,7 @@
                 android:layout_margin="@dimen/_5sdp"
                 android:textColor="@color/costume_black"
                 android:textSize="@dimen/_13ssp"
-                android:padding="@dimen/_8sdp"/>
+                android:padding="@dimen/_5sdp"/>
 
             <TextView
                 android:id="@+id/children_type"
@@ -147,7 +147,7 @@
                 android:layout_margin="@dimen/_5sdp"
                 android:textColor="@color/costume_black"
                 android:textSize="@dimen/_13ssp"
-                android:padding="@dimen/_8sdp"/>
+                android:padding="@dimen/_5sdp"/>
 
             <TextView
                 android:id="@+id/health_type"
@@ -158,7 +158,7 @@
                 android:layout_margin="@dimen/_5sdp"
                 android:textColor="@color/costume_black"
                 android:textSize="@dimen/_13ssp"
-                android:padding="@dimen/_8sdp"/>
+                android:padding="@dimen/_5sdp"/>
 
         </LinearLayout>
         <LinearLayout
@@ -177,7 +177,7 @@
                 android:layout_margin="@dimen/_5sdp"
                 android:textColor="@color/costume_black"
                 android:textSize="@dimen/_13ssp"
-                android:padding="@dimen/_8sdp"/>
+                android:padding="@dimen/_5sdp"/>
 
             <TextView
                 android:id="@+id/literary_type"
@@ -188,7 +188,7 @@
                 android:layout_margin="@dimen/_5sdp"
                 android:textColor="@color/costume_black"
                 android:textSize="@dimen/_13ssp"
-                android:padding="@dimen/_8sdp"/>
+                android:padding="@dimen/_5sdp"/>
 
             <TextView
                 android:id="@+id/young_type"
@@ -199,7 +199,7 @@
                 android:layout_margin="@dimen/_5sdp"
                 android:textColor="@color/costume_black"
                 android:textSize="@dimen/_13ssp"
-                android:padding="@dimen/_8sdp"/>
+                android:padding="@dimen/_5sdp"/>
 
         </LinearLayout>
         <LinearLayout
@@ -218,7 +218,7 @@
                 android:layout_margin="@dimen/_5sdp"
                 android:textColor="@color/costume_black"
                 android:textSize="@dimen/_13ssp"
-                android:padding="@dimen/_8sdp"/>
+                android:padding="@dimen/_5sdp"/>
 
             <TextView
                 android:id="@+id/crime_type"
@@ -229,7 +229,7 @@
                 android:layout_margin="@dimen/_5sdp"
                 android:textColor="@color/costume_black"
                 android:textSize="@dimen/_13ssp"
-                android:padding="@dimen/_8sdp"/>
+                android:padding="@dimen/_5sdp"/>
 
             <TextView
                 android:id="@+id/money_type"
@@ -240,7 +240,7 @@
                 android:layout_margin="@dimen/_5sdp"
                 android:textColor="@color/costume_black"
                 android:textSize="@dimen/_13ssp"
-                android:padding="@dimen/_8sdp"/>
+                android:padding="@dimen/_5sdp"/>
 
         </LinearLayout>
         <LinearLayout
@@ -259,7 +259,7 @@
                 android:layout_margin="@dimen/_5sdp"
                 android:textColor="@color/costume_black"
                 android:textSize="@dimen/_13ssp"
-                android:padding="@dimen/_8sdp"/>
+                android:padding="@dimen/_5sdp"/>
 
             <TextView
                 android:id="@+id/politics_type"
@@ -270,7 +270,7 @@
                 android:layout_margin="@dimen/_5sdp"
                 android:textColor="@color/costume_black"
                 android:textSize="@dimen/_13ssp"
-                android:padding="@dimen/_8sdp"/>
+                android:padding="@dimen/_5sdp"/>
 
 
         </LinearLayout>
@@ -281,7 +281,6 @@
     </LinearLayout>
 
     <TextView
-        android:enabled="false"
         android:id="@+id/next"
         android:layout_width="match_parent"
         android:layout_height="@dimen/_40sdp"

@@ -36,7 +36,7 @@ class HomeFragment : Fragment() {
     private val viewModel: HomeViewModel by lazy {
         requireNotNull(this)
         val repository: IRepository<Book> =
-            Repository(Book::class.java, Constants.BOOK_COLLECTION, requireContext())
+            Repository(Book::class.java, Constants.BOOK_COLLECTION, activity?.applicationContext!!)
         //get instance of the viewModelFactory
         val viewModelFactory = HomeViewModelFactory(repository, requireContext())
         ViewModelProvider(this, viewModelFactory).get(HomeViewModel::class.java)

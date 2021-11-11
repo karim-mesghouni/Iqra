@@ -1,11 +1,16 @@
 package com.karim_mesghouni.e_book.ui
 
 import android.Manifest
+import android.content.Context
+import android.content.pm.PackageManager
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
+import androidx.appcompat.widget.AppCompatCheckedTextView
+import androidx.core.content.ContextCompat
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
@@ -36,7 +41,7 @@ import com.karumi.dexter.listener.single.PermissionListener
 class LibraryFragment : Fragment() {
     private lateinit var mAdapter: BookAdapter
     private lateinit var binding: FragmentLibraryBinding
-    private lateinit var localUri:MutableMap<String,String>
+    private var localUri:MutableMap<String,String>? = mutableMapOf()
     private val viewModel: LibraryViewModel by lazy {
         requireNotNull(activity)
         val repo: IRepository<Book> =
@@ -57,7 +62,7 @@ class LibraryFragment : Fragment() {
                 }
 
                 override fun onPermissionDenied(p0: PermissionDeniedResponse?) {
-
+                          p0?.requestedPermission
                 }
 
                 override fun onPermissionRationaleShouldBeShown(
@@ -97,6 +102,10 @@ class LibraryFragment : Fragment() {
         return binding.root
     }
 
+    private fun checkPe():Boolean{
+      return  ContextCompat.checkSelfPermission(activity?.applicationContext!!,Manifest.permission.READ_EXTERNAL_STORAGE) == PackageManager.PERMISSION_GRANTED
+    }
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         binding.favoritesRv.adapter = ListAdapter(R.layout.book_item_fav){
@@ -126,8 +135,14 @@ class LibraryFragment : Fragment() {
 
     private fun setUpRv(it: List<Book>?) {
         mAdapter = BookAdapter(it,mLayout = R.layout.book_item_large) {
-            Log.d("read",localUri[it.name!!]!!)
-            open(localUri[it.name]!!,requireContext())
+           if (checkPe()) {
+               open(localUri?.get(it.name), requireContext())
+               Log.d("p","permission allowed")
+           }else{
+               Log.d("p","permission not allowed")
+               check()
+           }
+
         }
 
         binding.libraryInclude.categoryLarge.text = getString(R.string.downloads)
@@ -168,6 +183,31 @@ class LibraryFragment : Fragment() {
         binding.downloadsShimmerFrameLayout.stopShimmer()
         binding.favShimmerFrameLayout.stopShimmer()
     }
+
+
+    private fun check(){
+        Dexter.withContext(requireContext()).withPermission(Manifest.permission.READ_EXTERNAL_STORAGE)
+            .withListener(object : PermissionListener{
+                override fun onPermissionGranted(p0: PermissionGrantedResponse?) {
+                    viewModel.loadLocalData()
+                }
+
+                override fun onPermissionDenied(p0: PermissionDeniedResponse?) {
+                    p0?.requestedPermission
+                }
+
+                override fun onPermissionRationaleShouldBeShown(
+                    p0: PermissionRequest?,
+                    p1: PermissionToken?
+                ) {
+
+                }
+
+
+            }).check()
+    }
+
+
 
 
 }
